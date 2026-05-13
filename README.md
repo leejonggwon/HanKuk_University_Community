@@ -64,11 +64,13 @@
 
 # 5. 기능구조도
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=70% />
+  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=50% />
   <br>
   [기능구조도]
 </p>
 <br>
+
+
 
 
 # 6. 핵심기능설멸
