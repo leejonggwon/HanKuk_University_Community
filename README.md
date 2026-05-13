@@ -10,6 +10,7 @@
 - Bootstrap 3과 직관적인 JSP 기반 UI를 통해 사용자 친화적인 화면을 구성했습니다. <br>
 <br>
 
+
 # 2. 기술스택
 - **Language** - Java 1.8 <br>
 - **Framework** - Spring Framework 5.0.7.RELEASE <br>
@@ -53,6 +54,7 @@
 - LikeMapper /LikeMapper.xml <br>
 <br>
 
+
 # 4. DataBase E-R Diagram
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8702110a-16cd-4341-8128-b79fdf0deec5" width=100% />
@@ -64,7 +66,7 @@
 
 # 5. 기능구조도
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=50% />
+  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=60% />
   <br>
   [기능구조도]
 </p>
