@@ -11,7 +11,6 @@
 <br>
 
 # 2. 기술스택
-### 2. 개발환경
 - **Language** - Java 1.8 <br>
 - **Framework** - Spring Framework 5.0.7.RELEASE <br>
 - **Database:** - MySQL 5.1 + MyBatis 3.4.6 <br>
