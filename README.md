@@ -10,7 +10,7 @@
 - Bootstrap 3과 직관적인 JSP 기반 UI를 통해 사용자 친화적인 화면을 구성했습니다. <br>
 <br>
 
-
+# 2. 기술스택
 ### 2. 개발환경
 - **Language** - Java 1.8 <br>
 - **Framework** - Spring Framework 5.0.7.RELEASE <br>
