@@ -25,7 +25,7 @@
 # 3. 3Tier System Architecture 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="100%" />
+  <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="70%" />
   <br>
    [3Tier System Architecture]
 </p>
