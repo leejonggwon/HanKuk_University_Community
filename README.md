@@ -64,7 +64,7 @@
 
 # 5. 기능구조도
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=100% />
+  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=80% />
   <br>
   [기능구조도]
 </p>
