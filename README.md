@@ -23,7 +23,7 @@
 
 # 3. 시스템 아키텍처 
 
-### 3Tier 아키텍처
+## 3Tier 아키텍처
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="500" />
 </p>
