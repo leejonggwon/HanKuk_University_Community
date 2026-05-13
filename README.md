@@ -21,43 +21,49 @@
 - **Development Tools** - eGovFrame 4.0.0, Eclipse, Apache Tomcat 9 <br>
 <br>
 
-# 3. 시스템 아키텍처 
 
-## 3Tier 아키텍처
+# 3. 3Tier System Architecture 
+
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="500" />
+  <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="100%" />
+  <br>
+   [3Tier System Architecture]
 </p>
 
 ### 1) Controller / RestController
-▪ MainController <br>
-▪ MemberController / MemeberRestController <br>
-▪ BoardController / BoardRestController <br>
-▪ SeatController / SeatRestController <br>
-▪ ChatController <br>
-▪ CommentRestController <br>
-▪ LikeRestController <br>
+-  MainController <br>
+-  MemberController / MemeberRestController <br>
+-  BoardController / BoardRestController <br>
+-  SeatController / SeatRestController <br>
+-  ChatController <br>
+-  ommentRestController <br>
+-  LikeRestController <br>
 
 ### 2) Service / ServiceImpl
-▪ MemberService / MemberServiceImpl <br>
-▪ BoardService / BoardServiceImpl <br>
-▪ SeatService / SeatServiceImpl <br>
-▪ CommentService / CommentServiceImpl <br>
-▪ LikeService / LikeServiceImpl <br>
+- MemberService / MemberServiceImpl <br>
+- BoardService / BoardServiceImpl <br>
+- SeatService / SeatServiceImpl <br>
+- CommentService / CommentServiceImpl <br>
+- LikeService / LikeServiceImpl <br>
 
 ### 3) Mapper / mapper.xml
-▪ MemberMapper / MemberMapper.xml <br>
-▪ BoardMapper / BoardMapper.xml <br>
-▪ SeatMapper / SeatMapper.xml <br>
-▪ CommentMapper /CommentMapper.xml <br>
-▪ LikeMapper /LikeMapper.xml <br>
-
-### 4) socket
-▪ MySocketHandler_Group <br>
-▪ WebSocketCoonfig
-
+- MemberMapper / MemberMapper.xml <br>
+- BoardMapper / BoardMapper.xml <br>
+- SeatMapper / SeatMapper.xml <br>
+- CommentMapper /CommentMapper.xml <br>
+- LikeMapper /LikeMapper.xml <br>
 <br>
 
-## 4. 개발 포인트
+# 4. DataBase E-R Diagram
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8702110a-16cd-4341-8128-b79fdf0deec5" width=100% />
+  <br>
+  [E-R Diagram]
+</p>
+<br>
+
+
+# 4. 개발 포인트
 ▪ Spring MVC Framework와 3-Tier Structure의 Controller - Service - Model 계층 구조로 설계 <br>
 ▪ AJAX 비동기 통신을 통해 페이지 새로고침 없이 기능 구현 <br>
 ▪ MyBatis Mapper XML을 활용해 SQL을 명확하게 관리 <br>
