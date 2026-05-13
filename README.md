@@ -62,14 +62,16 @@
 <br>
 
 
-# 4. 개발 포인트
-▪ Spring MVC Framework와 3-Tier Structure의 Controller - Service - Model 계층 구조로 설계 <br>
-▪ AJAX 비동기 통신을 통해 페이지 새로고침 없이 기능 구현 <br>
-▪ MyBatis Mapper XML을 활용해 SQL을 명확하게 관리 <br>
-▪ JSP와 jQuery, Bootstrap3을 활용하여 직관적이고 반응형이며 간결한 사용자 인터페이스 제공 <br>
+# 5. 기능구조도
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1c202b67-cbd3-48fa-b2ef-01d6492d745a" width=100% />
+  <br>
+  [기능구조도]
+</p>
 <br>
 
-## 5. 기능설명
+
+# 6. 핵심기능설멸
 
 ### 로그인 페이지
 ▪ 로그인 인증 후 접근 가능<br>
