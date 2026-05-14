@@ -106,21 +106,6 @@
 - **받은 메세지함** -  페이징 처리 및 발신자/제목 기반의 동적 검색 기능을 제공하여 편의성을 높였습니다 <br>
 - **보낸 메시지함** -  내가 보낸 메시지의 이력을 관리하며, 상대방의 수신 여부(`ReadStatus`)를 실시간으로 확인할 수 있습니다 <br>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c281ad87-d207-4c6a-9560-254127d74b53" width="100%" />
-  <br>
-   [받은메세지함]
-</p>
-<br>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/b9eb1575-3057-40c0-b955-1d7c78b2215a" width="100%" />
-  <br>
-   [보낸메세지함]
-</p>
-<br>
-
-
 ### 비동기 프로필 및 유효성 체크
 - **작성자 정보 조회** -  메시지 목록에서 작성자 클릭 시 AJAX 통신으로 회원의 상세 정보(이름, 전공, 사진 등)를 모달 창으로 즉시 호출합니다 <br>
 - **오발송 방지** -  메시지 작성 시 수신자 아이디 존재 여부를 비동기로 체크하여 잘못된 전송을 사전에 차단합니다 <br>
@@ -150,8 +135,29 @@
 - **사용자 중심의 일괄 처리 및 데이터 처리** <br>
   - **체크박스 기반 다중 선택** - 각 행의 메시지 고유 번호(`msgIdx`)를 체크박스에 매핑하여 사용자가 여러 항목을 직관적으로 선택할 수 있도록 구현했습니다 <br>
   - **동적 폼 데이터 바인딩** - JavaScript(jQuery)를 활용해 선택된 값을 배열로 수집하고, 기존 전송 폼(`pageFrm`)에 `hidden` 태그로 동적 삽입하여 단 한 번의 요청으로 일괄 처리가 가능하도록 설계했습니다 <br>
+
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5a8e1d7e-54df-40c1-8e0d-08d821b4bafa" width="100%" />
+  <br>
+   [받은 메세지함]
+</p>
+<br>
 <br>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5215b375-f466-46f1-956f-1e71bd347c6f" width="100%" />
+  <br>
+   [보낸 메세지함]
+</p>
+<br>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/359754eb-e094-4462-b616-7b6a97ff22a9" width="100%" />
+  <br>
+   [메세지 작성]
+</p>
+<br>
 
 
 
