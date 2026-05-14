@@ -101,14 +101,14 @@
 - **보낸 메시지함** -  내가 보낸 메시지의 이력을 관리하며, 상대방의 수신 여부(`ReadStatus`)를 실시간으로 확인할 수 있습니다 <br>
 <br>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/94dcbe43-8057-4f6c-8c62-60bdc3862429" width="100%" />
+  <img src="https://github.com/user-attachments/assets/c281ad87-d207-4c6a-9560-254127d74b53" width="100%" />
   <br>
    [받은메세지함]
 </p>
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2b2a9fcd-c900-496c-b3a7-f88d8eea41f3" width="100%" />
+  <img src="https://github.com/user-attachments/assets/b9eb1575-3057-40c0-b955-1d7c78b2215a" width="100%" />
   <br>
    [보낸메세지함]
 </p>
