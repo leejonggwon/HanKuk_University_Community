@@ -18,7 +18,7 @@
 # 2. 기술스택
 - **Language** - Java 1.8 <br>
 - **Framework** - Spring Framework 5.0.7.RELEASE <br>
-- **Database:** - MySQL 5.1 + MyBatis 3.4.6 <br>
+- **Database** - MySQL 5.1 + MyBatis 3.4.6 <br>
 - **Web Layer** - JSP, JSTL, Servlet 3.1, jQuery, AJAX, HTML/CSS <br>
 - **Logging & Utilities** - SLF4J, Log4j, Lombok <br>
 - **Database Connectivity** - HikariCP, Spring JDBC <br>
@@ -174,7 +174,7 @@
 <br>
 
 
-## 1.좌석 발권 및 관리 시스템 (Seat Reservation System)
+## 2. 좌석 발권 및 관리 시스템 (Seat Reservation System)
 - 사용자가 실시간으로 열람실 좌석 현황을 확인하고, 발권 및 반납을 자기주도적으로 수행할 수 있는 통합 관리 시스템입니다 <br>
 <br>
 
@@ -221,7 +221,7 @@
 ### 기술적특징
 - **데이터 정합성 유지** <br>
   - **발권 시** - `CM_SEAT`의 가용 상태와 회원데이터의 이용 상태(`memStatus`)를 동시 업데이트하여 데이터 간의 모순이 없도록 설계했습니다 <br>
-  - **반납 시**- `NOW()` 함수로 정확한 반납 시간을 기록하고, ENDTIMESTATUS 값을 통해 정상 반납 데이터를 관리합니다 <br>
+  - **반납 시** - `NOW()` 함수로 정확한 반납 시간을 기록하고, ENDTIMESTATUS 값을 통해 정상 반납 데이터를 관리합니다 <br>
 <br>
 
 - **AJAX 기반의 효율적인 UI 업데이트** <br>
@@ -229,10 +229,66 @@
 <br>
 
 
+## 3. 파일 업로드 및 관리 기능 (File Upload System)
+- 사용자가 게시글을 등록할 때 이미지 및 첨부파일을 안전하게 서버에 저장하고 관리하기 위해 다음과 같은 로직을 구현했습니다 <br>
+<br>
 
+### 주요 기술 스택 및 라이브러리
+- **Library** - `cos.jar` (MultipartRequest) <br>
+- **Storage** - 로컬 파일 시스템 서버 저장 방식 <br>
+  <br>
+  
+### 2-way 유효성 검증
+- **Client-side** - `accept="image/*"` 속성과 `startsWith("image/")`를 통해 업로드 전 1차 필터링을 수행하여 불필요한 서버 요청을 방지했습니다 <br>
+- **Server-side** - 파일 확장자(PNG, JPG, GIF)를 대문자로 변환 후 재검증하여 비정상적인 파일 업로드를 차단했습니다 <br>
 
+   <br>
+    <p align="center">
+      <img src="https://github.com/user-attachments/assets/6765a10d-2ab5-42b6-bc68-ec150872552c" width="80%" />
+      <br>
+       [Client-side - accept="image/*"]
+    </p>
 
+  <br>
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/1ad92840-7399-4ab0-b7c3-d0c7a9022e8f" width="40%" />
+    <br>
+     [Client-side - startsWith("image/")]
+  </p>
+  
+  <br>
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/fe7ca022-9155-4128-b31d-ea114669a5f6" width="60%" />
+    <br>
+     [Server-side]
+  </p>
+  <br>
 
+### UUID 기반 파일 고유성 확보
+- 동일한 파일명을 가진 데이터를 여러 사용자가 업로드할 경우 발생하는 데이터 덮어쓰기(Conflict) 문제를 해결하기 위해 `UUID.randomUUID()`를 적용했습니다 <br>
+- **저장 구조** - UUID_원본파일명 형태로 저장하여 DB와 물리적 파일 간의 매핑을 안전하게 관리합니다 <br>
+  <br>
+
+### 데이터 정합성 유지 및 효율적 수정 로직
+- 파일이 새로 첨부되지 않으면` hidden`으로 넘겨받은 `originImgpath`를 유지하여 데이터 소실을 방지합니다. <br>
+- 프로필 이미지 변경 시 File.delete()를 호출하여 서버 내 불필요한 구버전 파일을 물리적으로 삭제, 스토리지 용량을 효율적으로 관리합니다 <br>
+  <br>    
+  
+### 동적 디렉토리 생성
+- 파일 저장 경로가 존재하지 않을 경우 `targetDir.exists()` 체크 후 `mkdirs()`를 통해 실행 시점에 디렉토리를 자동 생성하여 런타임 에러를 예방했습니다 <br>
+<br>
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/1144f5a9-02e5-4b5a-8aad-8024d60540de" width="100%" />
+    <br>
+     [커뮤니티 - 첨부파일 업로드]
+  </p>
+
+<br>
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/6006a158-bdcd-4f9b-b7fb-2635a1a65ece" width="100%" />
+    <br>
+     [회원정보수정 - 프로필이미지 업로드]
+  </p>
 
 
 
