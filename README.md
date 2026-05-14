@@ -203,7 +203,7 @@
  - 좌석 발권으로 [좌석 점유 상태 변경 → 회원 상태 업데이트 → 발권 데이터 생성]으로 이어지는 연쇄적인 비동기 로직을 구현하여 사용자 편의성을 극대화했습니다 <br>
 <br>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/72cab087-9903-4817-84b1-a31403d08002" width="100%" />
+  <img src="https://github.com/user-attachments/assets/72cab087-9903-4817-84b1-a31403d08002" width="50%" />
   <br>
    [Ajax 비동기 발권 프로세스]
 </p>
