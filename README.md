@@ -201,7 +201,6 @@
 
 ### 비동기 발권 프로세스
  - 좌석 발권으로 [좌석 점유 상태 변경 → 회원 상태 업데이트 → 발권 데이터 생성]으로 이어지는 연쇄적인 비동기 로직을 구현하여 사용자 편의성을 극대화했습니다 <br>
-<br>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/72cab087-9903-4817-84b1-a31403d08002" width="50%" />
   <br>
@@ -213,6 +212,11 @@
  - 현재 이용 중인 좌석 정보(n`owRInfo`)와 과거 이용 기록(`rRecord`)을 한 화면에서 비동기로 조회할 수 있으며, JavaScript `Date` 객체 가공을 통해 기록 데이터 가독성을 높였습니다. <br>
 <br>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c320ceec-626a-4e67-a355-f8f7646bd8c0" width="50%" />
+  <br>
+   [발권정보페이지]
+</p>
 
 ### 기술적특징
 - **데이터 정합성 유지** <br>
