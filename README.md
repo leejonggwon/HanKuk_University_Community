@@ -297,7 +297,6 @@
 
 ## 4. 파일 다운로드 시스템 (File Download)
 - 파일 업로드 시 보안을 위해 적용한 UUID를 다운로드 시점에 동적으로 제거하고, UTF-8 인코딩을 통해 다양한 브라우저 환경에서 한글 파일명이 안전하게 다운로드되도록 구현했습니다 <br>
-<br>
 
 ### UUID 제거 및 원본명 복구
  -  서버 저장 시 중복 방지를 위해 붙였던 UUID를 제거하고, 사용자에게는 원래의 파일명으로 다운로드되도록 처리하여 가독성을 높였습니다 <br>
@@ -323,6 +322,12 @@
    **5. 헤더 설정 (Content-Disposition)** - `attachment` 설정을 통해 브라우저 내부 실행이 아닌 '첨부 파일 다운로드' 방식을 강제합니다. <br>
 <br>
 
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/59ecc2c5-fea5-4a63-931a-e44f1891fe77" width="90%" />
+    <br>
+     [Server-side]
+  </p>
+  <br>
 
 
 
