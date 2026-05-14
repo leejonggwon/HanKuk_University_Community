@@ -325,7 +325,7 @@
  <p align="center">
     <img src="https://github.com/user-attachments/assets/59ecc2c5-fea5-4a63-931a-e44f1891fe77" width="90%" />
     <br>
-     [Server-side]
+     [파일다운로드기능]
   </p>
   <br>
 
