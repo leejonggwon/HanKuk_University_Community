@@ -135,6 +135,7 @@
   - **체크박스 기반 다중 선택** - 각 행의 메시지 고유 번호(`msgIdx`)를 체크박스에 매핑하여 사용자가 여러 항목을 직관적으로 선택할 수 있도록 구현했습니다 <br>
   - **동적 폼 데이터 바인딩** - JavaScript(jQuery)를 활용해 선택된 값을 배열로 수집하고, 기존 전송 폼(`pageFrm`)에 `hidden` 태그로 동적 삽입하여 단 한 번의 요청으로 일괄 처리가 가능하도록 설계했습니다 <br>
 
+<br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/5a8e1d7e-54df-40c1-8e0d-08d821b4bafa" width="100%" />
@@ -158,6 +159,12 @@
 </p>
 <br>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c242ed0f-06ea-46bc-9b98-b1fd74183e0d" width="100%" />
+  <br>
+   [메시지 상세 보기]
+</p>
+<br>
 
 
 
