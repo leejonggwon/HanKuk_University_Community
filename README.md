@@ -240,7 +240,7 @@
 - **Storage** - 로컬 파일 시스템 서버 저장 방식 <br>
   <br>
   
-### 2-way 유효성 검증
+### two-way 유효성 검증
 - **Client-side** - `accept="image/*"` 속성과 `startsWith("image/")`를 통해 업로드 전 1차 필터링을 수행하여 불필요한 서버 요청을 방지했습니다 <br>
 - **Server-side** - 파일 확장자(PNG, JPG, GIF)를 대문자로 변환 후 재검증하여 비정상적인 파일 업로드를 차단했습니다 <br>
 
