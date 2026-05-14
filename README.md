@@ -87,67 +87,34 @@
 
 
 
-# 6. 핵심기능설멸
-## 1.메시지 시스템(Message System)
+# 6. 핵심기능설명
+
+## 1.메시지(메일) 시스템(Message System)
 사용자 간 원활한 소통과 실시간 알림을 제공하기 위한 통합 메시징 서비스입니다 <br>
 
-
-
-
-
-
-### 로그인 페이지
-▪ 로그인 인증 후 접근 가능<br>
-▪ 비회원 접근 제한
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/0cb0e457-c6f2-47b1-99a3-d4e7997db389" width="700" />
-</p>
-
-
-### 회원가입 
-▪ 아이디 중복 확인 <br>
-▪ 비밀번호 일치 여부 확인 <br>
-▪ 필수 회원정보 미입력 시 메시지 출력 <br>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c0f902f9-7ea9-4dfc-88ec-9979f3d688ab" width="700" />
-</p>
+### 실시간 메시지 알림
+- JAX를 활용하여 페이지 새로고침 없이 상단 헤더의 배지(Badge)를 통해 신규 메시지 수신 여부를 실시간으로 시각화했습니다 <br>
 <br>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/9c085db7-79aa-481f-ab79-535fa2b8303c" width="700" />
-</p>
-
-
-### 게시글 기능
-▪ 게시글목록 <br>
-▪ 게시글 상세보기 할 때마다 조회수 1씩 증가 <br>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/54364dc7-5833-4be0-9319-b56e0d476664" width="700" />
-</p>
+### 메시지함 관리
+- **받은 메세지함** -  페이징 처리 및 발신자/제목 기반의 동적 검색 기능을 제공하여 편의성을 높였습니다 <br>
+- **보낸 메시지함** -  내가 보낸 메시지의 이력을 관리하며, 상대방의 수신 여부(`ReadStatus`)를 실시간으로 확인할 수 있습니다 <br>
 <br>
 
-
-▪ 게시글작성(제목 미입력 시 경고 메세지 츨력) <br>
-▪ 파일업로드 <br>
-▪ 게시글 목록으로 이동 <br>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/6dab254e-4e28-4e7d-84de-0e5f9ebdfef2" width="700" />
-</p>
+### 비동기 프로필 및 유효성 체크
+- **작성자 정보 조회** -  메시지 목록에서 작성자 클릭 시 AJAX 통신으로 회원의 상세 정보(이름, 전공, 사진 등)를 모달 창으로 즉시 호출합니다 <br>
+- **오발송 방지** -  메시지 작성 시 수신자 아이디 존재 여부를 비동기로 체크하여 잘못된 전송을 사전에 차단합니다 <br>
 <br>
 
+### 기술적특징
+- **상태 세분화 설계를 통한 UX 최적화** <br>
+  - `readStatus` - 개별 메시지의 읽음/미열람 상태를 관리하여 사용자가 읽은 메시지를 구분할 수 있게 합니다 <br>
+  - `arriveStatus` - 시지 목록 진입 시 알림 배지를 초기화하는 상태 값으로, '알림 확인'과 '내용 읽기'를 분리하여 정교한 UX를 구현했습니다 <br>
 
-▪ 게시글수정 <br>
-▪ 게시글 삭제 <br>
-▪ 답글 삭제시 "작성자에 의해 삭제된 게시글입니다" 표시 <br>
-▪ 게시글 목록으로 이동 <br>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/1ae3b894-7c6b-4402-a9fa-a8c1ece173cd" width="700" />
-</p>
-<br>
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/e1d038f5-3e02-4269-bfe7-0b81b277fa94" width="700" />
-</p>
-<br>
+
+
+
+
 
 
 ### 작성자 프로필 및 메시지 기능
