@@ -1,6 +1,7 @@
 # 1. 서비스소개 
 ### 서비스명
-- HanKuk University Community (한국대학교 학생 중심 커뮤니티) <br>
+- HanKuk University Community (한국대학교 커뮤니티) <br>
+- Spring MVC와 WebSocket을 활용한 3-Tier Architecture 기반 학생 중심 커뮤니티 플랫폼
 
 ### 서비스설명
 - 본 프로젝트는 스프링(Spring) 프레임워크와 MVC 3Tier 아키텍처를 기반으로 한 커뮤니케이션 프로젝트입니다. <br>
