@@ -25,7 +25,7 @@
 
 # 3. Spring MVC
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b1b16204-b73e-494a-8991-bd9eb5dfc7be" width="70%" />
+  <img src="https://github.com/user-attachments/assets/b1b16204-b73e-494a-8991-bd9eb5dfc7be" width="50%" />
   <br>
    [Spring MVC]
 </p>
@@ -34,7 +34,7 @@
 # 3. System Architecture 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="70%" />
+  <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="50%" />
   <br>
    [3Tier System Architecture]
 </p>
