@@ -105,7 +105,14 @@
   <br>
    [받은메세지함]
 </p>
+<br>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2b2a9fcd-c900-496c-b3a7-f88d8eea41f3" width="100%" />
+  <br>
+   [보낸메세지함]
+</p>
+<br>
 
 
 ### 비동기 프로필 및 유효성 체크
