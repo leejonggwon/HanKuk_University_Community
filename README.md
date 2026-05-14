@@ -94,12 +94,18 @@
 
 ### 실시간 메시지 알림
 - JAX를 활용하여 페이지 새로고침 없이 상단 헤더의 배지(Badge)를 통해 신규 메시지 수신 여부를 실시간으로 시각화했습니다 <br>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/80a1e767-df31-4f85-a11d-06027831df2e" width="100%" />
+  <br>
+   [실시간 메시지 알림]
+</p>
 <br>
 
 ### 메시지함 관리
 - **받은 메세지함** -  페이징 처리 및 발신자/제목 기반의 동적 검색 기능을 제공하여 편의성을 높였습니다 <br>
 - **보낸 메시지함** -  내가 보낸 메시지의 이력을 관리하며, 상대방의 수신 여부(`ReadStatus`)를 실시간으로 확인할 수 있습니다 <br>
-<br>
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c281ad87-d207-4c6a-9560-254127d74b53" width="100%" />
   <br>
@@ -118,6 +124,11 @@
 ### 비동기 프로필 및 유효성 체크
 - **작성자 정보 조회** -  메시지 목록에서 작성자 클릭 시 AJAX 통신으로 회원의 상세 정보(이름, 전공, 사진 등)를 모달 창으로 즉시 호출합니다 <br>
 - **오발송 방지** -  메시지 작성 시 수신자 아이디 존재 여부를 비동기로 체크하여 잘못된 전송을 사전에 차단합니다 <br>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0cfbce8e-74ee-4bca-867c-8b50c0fb3ac2" width="100%" />
+  <br>
+   [작성자 정보 조회]
+</p>
 <br>
 
 ### 기술적특징
