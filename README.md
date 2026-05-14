@@ -1,4 +1,8 @@
 # 1. 서비스소개 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/53dc26f0-91cd-4fdf-9a57-ed103ecc2ed8" width="100%" />
+</p>
+
 ### 서비스명
 - HanKuk University Community (한국대학교 커뮤니티) <br>
 - Spring MVC와 WebSocket을 활용한 3-Tier Architecture 기반 학생 중심 커뮤니티 플랫폼
