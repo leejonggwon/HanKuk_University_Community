@@ -100,7 +100,7 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/80a1e767-df31-4f85-a11d-06027831df2e" width="100%" />
+  <img src="https://github.com/user-attachments/assets/80a1e767-df31-4f85-a11d-06027831df2e" width="90%" />
   <br>
    [실시간 메시지 알림]
 </p>
@@ -118,7 +118,7 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/0cfbce8e-74ee-4bca-867c-8b50c0fb3ac2" width="100%" />
+  <img src="https://github.com/user-attachments/assets/0cfbce8e-74ee-4bca-867c-8b50c0fb3ac2" width="90%" />
   <br>
    [작성자 정보 조회]
 </p>
@@ -147,7 +147,7 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5a8e1d7e-54df-40c1-8e0d-08d821b4bafa" width="100%" />
+  <img src="https://github.com/user-attachments/assets/5a8e1d7e-54df-40c1-8e0d-08d821b4bafa" width="90%" />
   <br>
    [받은 메세지함]
 </p>
@@ -155,21 +155,21 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5215b375-f466-46f1-956f-1e71bd347c6f" width="100%" />
+  <img src="https://github.com/user-attachments/assets/5215b375-f466-46f1-956f-1e71bd347c6f" width="90%" />
   <br>
    [보낸 메세지함]
 </p>
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/359754eb-e094-4462-b616-7b6a97ff22a9" width="100%" />
+  <img src="https://github.com/user-attachments/assets/359754eb-e094-4462-b616-7b6a97ff22a9" width="90%" />
   <br>
    [메세지 작성]
 </p>
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c242ed0f-06ea-46bc-9b98-b1fd74183e0d" width="100%" />
+  <img src="https://github.com/user-attachments/assets/c242ed0f-06ea-46bc-9b98-b1fd74183e0d" width="90%" />
   <br>
    [메시지 상세 보기]
 </p>
@@ -184,7 +184,7 @@
  -  `c:forEach`와 `c:choose`를 활용하여 DataBase의 좌석상태값(`seatAvailable`)에 따라 버튼의 활성화 상태를 실시간으로 렌더링합니다 <br>
 <br>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2172384f-3189-44fd-9085-8cb8374abc44" width="100%" />
+  <img src="https://github.com/user-attachments/assets/2172384f-3189-44fd-9085-8cb8374abc44" width="90%" />
   <br>
    [좌석발권페이지]
 </p>
@@ -195,7 +195,7 @@
  - 이미 이용 중인 좌석이 있는 경우, 추가 발권 시도를 감지하여 "사용 중인 좌석이 있습니다" 라는 안내와 함께 프로세스를 안전하게 차단함으로써 데이터 중복 생성을 방지했습니다 <br>
 <br>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8a443e61-535f-48f2-b170-5590ec50c0cd" width="100%" />
+  <img src="https://github.com/user-attachments/assets/8a443e61-535f-48f2-b170-5590ec50c0cd" width="90%" />
   <br>
    [중복 발권 방지]
 </p>
@@ -215,7 +215,7 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c320ceec-626a-4e67-a355-f8f7646bd8c0" width="100%" />
+  <img src="https://github.com/user-attachments/assets/c320ceec-626a-4e67-a355-f8f7646bd8c0" width="90%" />
   <br>
    [발권정보페이지]
 </p>
@@ -280,14 +280,14 @@
 - 파일 저장 경로가 존재하지 않을 경우 `targetDir.exists()` 체크 후 `mkdirs()`를 통해 실행 시점에 디렉토리를 자동 생성하여 런타임 에러를 예방했습니다 <br>
 <br>
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/1144f5a9-02e5-4b5a-8aad-8024d60540de" width="100%" />
+    <img src="https://github.com/user-attachments/assets/1144f5a9-02e5-4b5a-8aad-8024d60540de" width="90%" />
     <br>
      [커뮤니티 - 첨부파일 업로드]
   </p>
 
 <br>
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/6006a158-bdcd-4f9b-b7fb-2635a1a65ece" width="100%" />
+    <img src="https://github.com/user-attachments/assets/6006a158-bdcd-4f9b-b7fb-2635a1a65ece" width="90%" />
     <br>
      [회원정보수정 - 프로필이미지 업로드]
   </p>
