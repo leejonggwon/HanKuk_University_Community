@@ -93,6 +93,8 @@
 ### 실시간 메시지 알림
 - JAX를 활용하여 페이지 새로고침 없이 상단 헤더의 배지(Badge)를 통해 신규 메시지 수신 여부를 실시간으로 시각화했습니다 <br>
 
+<br>
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/80a1e767-df31-4f85-a11d-06027831df2e" width="100%" />
   <br>
@@ -108,6 +110,9 @@
 ### 비동기 프로필 및 유효성 체크
 - **작성자 정보 조회** -  메시지 목록에서 작성자 클릭 시 AJAX 통신으로 회원의 상세 정보(이름, 전공, 사진 등)를 모달 창으로 즉시 호출합니다 <br>
 - **오발송 방지** -  메시지 작성 시 수신자 아이디 존재 여부를 비동기로 체크하여 잘못된 전송을 사전에 차단합니다 <br>
+
+<br>
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0cfbce8e-74ee-4bca-867c-8b50c0fb3ac2" width="100%" />
   <br>
