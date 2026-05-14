@@ -213,7 +213,7 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c320ceec-626a-4e67-a355-f8f7646bd8c0" width="50%" />
+  <img src="https://github.com/user-attachments/assets/c320ceec-626a-4e67-a355-f8f7646bd8c0" width="100%" />
   <br>
    [발권정보페이지]
 </p>
