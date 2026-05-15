@@ -356,7 +356,7 @@
  - **상태 유지** - 페이지 번호를 클릭해도 현재의 검색 조건(type, keyword)이 파라미터로 함께 전송되어 검색 결과 내에서 페이지 이동이 가능합니다 <br>
  - **상세보기 연동** - 게시글 제목 클릭 시에도 기존 페이징 정보를 파라미터로 들고 감으로써, '목록으로 돌아가기' 시 이전 상태를 복원합니다 <br>
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/69d3516a-277a-4974-b509-17ee24db9a9e" width="90%" />
+    <img src="https://github.com/user-attachments/assets/d961aa71-5742-4140-accd-99cb74f03b9b" width="60%" />
     <br>
      [BoardMapper.xml]
   </p>
@@ -365,6 +365,7 @@
 ### RedirectAttributes
 수정/삭제 후 리다이렉트 시 `addAttribute`로 페이징 정보를 유지하고, `addFlashAttribute`로 결과 메시지를 일회성 모달로 띄워 사용자에게 명확한 피드백을 제공합니다 <br>
  <br>
+
 
 
 
