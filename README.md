@@ -319,7 +319,7 @@
    **2. 리소스 객체화** - 로컬 경로의 파일을 `UrlResource` 객체로 변환하여 메모리 효율적인 스트리밍 준비를 마칩니다 <br>
    **3. 예외 처리** - 파일이 존재하지 않을 경우 404 Not Found를 반환하여 시스템 안정성을 확보했습니다 <br>
    **4. 파일명 파싱** - `indexOf("_")`를 활용해 저장용 이름(UUID_파일명)에서 실제 파일명만 추출합니다 <br>
-   **5. 헤더 설정 (Content-Disposition)** - `attachment` 설정을 통해 브라우저 내부 실행이 아닌 '첨부 파일 다운로드' 방식을 강제합니다. <br>
+   **5. 헤더 설정 (Content-Disposition)** - `attachment` 설정을 통해 브라우저 내부 실행이 아닌 '첨부 파일 다운로드' 방식을 강제합니다 <br>
 <br>
 
  <p align="center">
@@ -328,6 +328,44 @@
      [파일다운로드기능]
   </p>
   <br>
+
+
+## 5. 페이징 및 동적 검색 시스 (Paging & Dynamic Search)
+- 대량의 데이터를 효율적으로 조회하고, 사용자가 원하는 정보를 빠르게 찾을 수 있도록 객체 지향적 페이징 처리와 MyBatis 동적 SQL 기반의 검색 기능을 구현했습니다 <br>
+
+### 주요 설계
+ **Criteria** - 페이지 번호(`page`), 페이지당 게시글 수(`perPageNum`), 검색 키워드 및 타입 데이터를 하나의 객체로 캡슐화하여 계층 간 데이터 전달을 단순화했습니다 <br>
+ **PageMaker** - 복잡한 페이징 연산(시작/끝 페이지 계산, 이전/다음 버튼 활성화 여부 등)을 전담하는 클래스를 설계하여 View의 로직 부담을 줄였습니다 <br>
+ **Dynamic SQL** - MyBatis의 `<sql>`과 `<include>` 태그를 사용하여 검색 조건에 따라 SQL이 동적으로 생성되도록 구현, 유지보수성을 높였습니다 <br>
+ <br>
+
+
+### MyBatis 동적 SQL과  태그 활용
+ 검색 조건에 따라 SQL이 유연하게 변하도록 <sql>과 <include> 태그를 사용했습니다. 이는 코드의 재사용성을 높이고 유지보수를 용이하게 합니다. <br>
+ <br>
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/58a937b6-7edf-4dfa-8d5d-3f907d35148f" width="90%" />
+    <br>
+     [BoardMapper.xml]
+  </p>
+  <br>
+  
+### JavaScript를 이용한 폼 컨트롤
+ 페이징 번호를 클릭했을 때 단순히 링크로 이동하는 것이 아니라, 숨겨진 폼(pageFrm)의 값을 JavaScript로 조작하여 전송합니다 <br>
+
+ - **상태 유지** - 페이지 번호를 클릭해도 현재의 검색 조건(type, keyword)이 파라미터로 함께 전송되어 검색 결과 내에서 페이지 이동이 가능합니다 <br>
+ - **상세보기 연동** - 게시글 제목 클릭 시에도 기존 페이징 정보를 파라미터로 들고 감으로써, '목록으로 돌아가기' 시 이전 상태를 복원합니다 <br>
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/69d3516a-277a-4974-b509-17ee24db9a9e" width="90%" />
+    <br>
+     [BoardMapper.xml]
+  </p>
+ <br>
+
+### RedirectAttributes
+수정/삭제 후 리다이렉트 시 `addAttribute`로 페이징 정보를 유지하고, `addFlashAttribute`로 결과 메시지를 일회성 모달로 띄워 사용자에게 명확한 피드백을 제공합니다 <br>
+ <br>
+
 
 
 
