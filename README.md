@@ -433,14 +433,14 @@
 
    
  <p align="center">
-    <img  src="https://github.com/user-attachments/assets/680c6016-3d93-435a-aed0-336b77dd7be6" width="90%" />
+    <img  src="https://github.com/user-attachments/assets/680c6016-3d93-435a-aed0-336b77dd7be6" width="70%" />
     <br>
      [댓글기능]
   </p>
  <br>
 
 <p align="center">
-    <img  src="https://github.com/user-attachments/assets/629cfe92-52ff-4ce0-9c6b-64c86cd5b0e5" width="90%" />
+    <img  src="https://github.com/user-attachments/assets/629cfe92-52ff-4ce0-9c6b-64c86cd5b0e5" width="70%" />
     <br>
      [댓글기능 - 논리적 삭제]
   </p>
