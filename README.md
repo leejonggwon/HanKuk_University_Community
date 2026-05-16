@@ -4,13 +4,13 @@
 </p>
 
 
-### 서비스명
+### 1-1. 서비스명
 - HanKuk University Community (한국대학교 커뮤니티) <br>
 - Spring MVC와 WebSocket을 활용한 3-Tier Architecture 기반 대학생 중심 커뮤니티 플랫폼<br>
 
 <br>
 
-### 서비스설명
+### 1-2. 서비스설명
 - 본 프로젝트는 스프링(Spring) 프레임워크와 MVC 3Tier 아키텍처를 기반으로 한 커뮤니케이션 프로젝트입니다. <br>
 - 사용자 간 손쉽게 소통하고 효율적으로 커뮤니티 기능을 활용할 수 있는 웹 애플리케이션 개발을 목표로 합니다. <br>
 - 실시간 그룹 채팅, 메시지(메일), 좌석 발권, 게시판 CRUD, 댓글·답글, 검색, 페이징, 게시글 작성자 프로필, 좋아요, 조회수, 자료 검색, 회원 관리 등의 기능을 제공합니다. <br>
@@ -18,12 +18,12 @@
 - Bootstrap 3과 직관적인 JSP 기반 UI를 통해 사용자 친화적인 화면을 구성했습니다. <br>
 <br>
 
-### 프로젝트기간
+### 1-3. 프로젝트기간
 - 2025.10 ~ 2025.12 <br>
 - renewal - 2026.5 <br>
 <br>
 
-### 시연영상
+### 1-4. 시연영상
 adv <br>
 
 # 2. 기술스택
@@ -45,7 +45,7 @@ adv <br>
 </p>
 
 
-# 3. System Architecture 
+# 4. System Architecture 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="50%" />
@@ -78,7 +78,7 @@ adv <br>
 <br>
 
 
-# 4. DataBase E-R Diagram
+# 5. DataBase E-R Diagram
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8702110a-16cd-4341-8128-b79fdf0deec5" width=100% />
   <br>
@@ -87,7 +87,7 @@ adv <br>
 <br>
 
 
-# 5. 기능구조도
+# 6. 기능구조도
 <p align="center">
   <img src="https://github.com/user-attachments/assets/13926689-cb28-4cf4-bef1-a0589860bb74" width=55% />
   <br>
@@ -96,7 +96,7 @@ adv <br>
 <br>
 
 
-# 6. 핵심기능설명
+# 7. 핵심기능설명
 
 <br>
 
