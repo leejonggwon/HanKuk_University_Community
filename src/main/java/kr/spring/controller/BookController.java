@@ -59,12 +59,16 @@ public class BookController {
 	}
 	
 	
+	
+	
+	
 
 	//도서등록페이지 이동 
 	@GetMapping("/bookRegister")
 	public String bookRegister() {
 		return "book/bookRegister";
 	}
+	
 	
 	//도서 등록
 	@PostMapping("/bookRegister")

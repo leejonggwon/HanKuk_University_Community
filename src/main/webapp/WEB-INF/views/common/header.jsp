@@ -15,12 +15,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+	
+	<!-- div class="container" -->
+	<div class="container-fluid" style="padding-left: 260px; padding-right: 260px;">
+	<!-- 정적 include 이라서 WEB-INF 안에 있는 JSP를 직접 읽어올 수 있다 -->
+	
 	<!-- 메뉴바 -->
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -32,9 +37,7 @@
 						class="icon-bar"></span>
 				</button>
 				
-				<a class="navbar-brand" href="#">
-				<img  style="display:inline-block; height:25px; margin-right:5px;" class="img-circle" alt="" src="${cpath}/resources/images/logo2.jpg" />
-				 MVC Communication</a>
+				<a class="navbar-brand" href="#"><span style=" margin-left:25px; margin-right:5px;">HanKuk University</span></a>
 			</div>
 				
 			<div class="collapse navbar-collapse" id="myNavbar">
@@ -53,15 +56,15 @@
 				
 					<c:if test="${not empty mvo.memProfile}">
 					    <li>				    	
-					        <img style="width:50px; height:50px;" class="img-circle" alt="" src="${cpath}/resources/upload/${mvo.memProfile}" />
-					   		<span style="padding-left:5px;">${mvo.memNickName}님 (${mvo.memID})</span>
+					        <img style="width:50px; height:50px;" class="img-circle" alt="" src="${cpath}/profile_upload/${mvo.memProfile}" />
+					   		<span style="padding-left:5px;">${mvo.memName} (${mvo.memID})</span>
 					    </li>
 					</c:if>
 					
 					<c:if test="${empty mvo.memProfile}">
 					    <li>				    	
 					        <img style="width:50px; height:50px;" class="img-circle" alt="" src="${cpath}/resources/images/default.png" /> 
-					    	<span style="padding-left:5px;">${mvo.memNickName}님 (${mvo.memID})</span>
+					    	<span style="padding-left:5px;">${mvo.memName} (${mvo.memID})</span>
 					    </li>
 					</c:if>
 					<li><a href="${cpath}/message/msgList"><span class="glyphicon glyphicon-envelope"></span>&nbsp;메세지&nbsp;<span id="newMsgCount" class="badge"></span></a></li>

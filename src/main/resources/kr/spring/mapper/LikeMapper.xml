@@ -32,6 +32,5 @@
 	<select id="likeCount" parameterType="int" resultType="kr.spring.entity.Board">
 		SELECT LIKECOUNT FROM CM_BOARD WHERE IDX = #{idx}
 	</select>
-	
 
 </mapper>

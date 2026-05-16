@@ -15,75 +15,142 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
+
+<script src="${cpath}/resources/js/writer_modal.js"></script>
 <style>
 
 </style>
 </head>
 <body>
-	<div class="container">
+
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading">Board Content</div>
 		<div class="panel-body">
 		<table class="table table-bordered table-hover">
+		
+		
+	
 			<tr>
-				<td style="text-align: center">번호</td>
-				<td>${vo.idx}</td>
-			</tr>
-			<tr>
-				<td style="text-align: center">제목</td>
-				<td><c:out value="${vo.title}"/></td>
-			</tr>
-			<tr>
-				<td style="text-align: center">내용</td>
+				<td style="text-align: center;">분류</td>
 				<td>
-					<textarea class="form-control" readonly="readonly" rows="8" cols=""><c:out value="${vo.content}"/></textarea>
-					
-					<c:if test="${not empty vo.imgpath}">
-					<br>
-						<img src="${cpath}/resources/board/${vo.imgpath}" 
-        							style="max-width:100%; height:auto;">
-					</c:if>
+					<div class="form-inline justify-content-start"> 
+							<select disabled id="category" name="category" class="form-control">			
+								<option value="">카테고리</option>			
+						        <option value="일상"
+						        ${vo.category == '일상' ? 'selected' : ''}>
+						        일상
+						        </option>
+						
+						        <option value="학교생활"
+						        ${vo.category == '학교생활' ? 'selected' : ''}>
+						        학교생활
+						        </option>
+						
+						        <option value="질문"
+						        ${vo.category == '질문' ? 'selected' : ''}>
+						        질문
+						        </option>
+						
+						        <option value="스터디모집"
+						        ${vo.category == '스터디모집' ? 'selected' : ''}>
+						        스터디모집
+						        </option>
+						
+						        <option value="동아리"
+						        ${vo.category == '동아리' ? 'selected' : ''}>
+						        동아리
+						        </option>
+						
+						        <option value="홍보"
+						        ${vo.category == '홍보' ? 'selected' : ''}>
+						        홍보
+						        </option>
+						
+						        <option value="취업진로"
+						        ${vo.category == '취업진로' ? 'selected' : ''}>
+						        취업진로
+						        </option>
+						
+						        <option value="거래나눔"
+						        ${vo.category == '거래나눔' ? 'selected' : ''}>
+						        거래나눔
+						        </option>			
+							</select>
+						</div>				
+					</div>	
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align: center">작성자</td>
-				<td>${vo.writer}</td>
+				<td style="text-align: center;">제목</td>
+				<td><c:out value="${vo.title}"/></td>
 			</tr>
 			<tr>
-				<td style="text-align: center">조회수</td>
+				<td style="text-align: center; width: 12%;">내용</td>
+				<td>
+					<c:if test="${not empty vo.imgpath}">
+						<br>
+						<img src="${cpath}/board_upload/${vo.imgpath}" style="max-width:50%; height:auto;">		
+						<br>	
+						<br>
+					</c:if>
+	
+					<textarea class="form-control" readonly="readonly" rows="8" cols=""><c:out value="${vo.content}"/></textarea>
+				</td>
+			</tr>
+			
+			<c:if test="${not empty vo.attached_data}">
+				<tr>
+					<td style="text-align: center">다운로드링크</td>
+					<td><a id="attached_data" href="${cpath}/board/download/${vo.attached_data}">${vo.attached_data}</a></td>
+				</tr>			
+			</c:if>
+
+			<tr>
+				<td style="text-align: center;">작성자</td>
+				<td class="writer" data-writer="${vo.memID}">
+				   <a href="#"> ${vo.writer}</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">전공</td>
+				<td>${vo.memMajor}</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">조회수</td>
 				<td>${vo.count}</td>
 			</tr>
 			<tr>
-				<td style="text-align: center">공감수</td>
+				<td style="text-align: center;">공감수</td>
 				<td id="likeView"></td> 	
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align:center">
 					
 					<!--좋아요버튼자리-->
-					<button id="likeBtn" class="btn btn-default btn-sm" type="button" onclick="likePlus()">♡</button>
+					<button id="likeBtn" class="btn btn-default btn-sm" type="button" onclick="likePlus()">♡ 좋아요</button>			
+					<button data-btn="reply" class="btn btn-sm btn-custom">답글쓰기</button>
 					
-					<c:if test="${not empty mvo}"> <!-- mvo가 비어있지 않는 상황: 로그인한 상황을 말한다 -->
-					<button data-btn="reply" class="btn btn-sm btn-primary">답글쓰기</button>
-					<button data-btn="modify" class="btn btn-sm btn-success">수정화면</button>   
+					<c:if test="${mvo.memID eq vo.memID }">
+						<button data-btn="modify" class="btn btn-sm btn-custom">수정화면</button>
+						<button data-btn="remove" type="button" class="btn btn-sm btn-default">삭제</button>     
 					</c:if>
-					
-					<c:if test="${empty mvo}"> <!--로그인 안한 상황을 말한다 -->
-					<button disabled="disabled" class="btn btn-sm btn-primary">답글</button>
-					<button disabled="disabled" class="btn btn-sm btn-success">수정</button>   
-					</c:if>
-					<button data-btn="list" class="btn btn-sm btn-warning">목록</button>			
+						
+					<button data-btn="list" class="btn btn-sm btn-default">목록</button>			
+
 				</td>
 			</tr>		
 		</table>
 		
-		<form id="frm" method="get" action="">
+		
+		<form id="frm">
 			<input id="idx" type="hidden" name="idx" value="${vo.idx}" >
+			
 			<input type="hidden" name="page" value="${cri.page}">
 			<input type="hidden" name="perPageNum" value="${cri.perPageNum}">	
 				
@@ -99,12 +166,13 @@
 			<form id="cmtfrm"> 
 				<input type="hidden" name="idx" value="${vo.idx}">
 				<input type="hidden" name="memID" value="${mvo.memID}">					
-				<input type="hidden" name="memName" value="${mvo.memName}">					
-				<input type="hidden" name="memProfile" value="${mvo.memProfile}">				
+				<input type="hidden" name="memMajor" value="${mvo.memMajor}">					
+				<input type="hidden" name="memProfile" value="${mvo.memProfile}">	
+							
 				<table id="cmtTbl" class="table table-bordered table-hover">
 					<tr>
 						<td style="text-align: center; vertical-align: middle;">댓글작성자</td>
-						<td><input readonly="readonly" type="text" name="memNickName" value="${mvo.memNickName}" class="form-control"></td> 
+						<td><input readonly="readonly" type="text" name="memName" value="${mvo.memName}" class="form-control"></td> 
 						<td style="text-align:center; vertical-align:middle; width:80px;">
 							<button class="btn btn-default btn-sm" type="reset" id="fclear">취소</button>
 						</td>
@@ -115,7 +183,7 @@
 							<textarea placeholder="댓글을 입력해주세요." rows="2" cols="" " name="cmtContent" class="form-control"></textarea>
 						</td> 
 						<td style="text-align:center; vertical-align:middle; width:80px;"> 
-							<button class="btn btn-primary btn-sm" type="button" onclick="cmtInsert()">댓글등록</button>											
+							<button class="btn btn-custom btn-sm" type="button" onclick="cmtInsert()">댓글등록</button>											
 						</td>
 					</tr>		                        
 				</table>
@@ -124,18 +192,22 @@
 		
 		<!-- 댓글리스트폼 -->
 		<div class="panel-body">
+		<div class="table-responsive" style="max-height: 500px;">
 			<table id="cmtList" class="table table-bordered table-hover"> 	
 				<tbody id="cmtView">
 					<!--비동기 방식으로 가져온 댓글 나오게할 부분-->		
 				</tbody>				
-			</table>		
+			</table>
+		</div>		
 		</div>
 		
-		
-		
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %>
 	  </div>
 	</div>
+	
+	<!-- 작성자 정보를 띄어주는 모달 -->
+	<%@ include file="/WEB-INF/views/common/writer_modal.jsp" %>
+
 	
 	<script type="text/javascript">
 		//링크처리하기 
@@ -150,21 +222,79 @@
 						                                                  
 				if(btn == "reply"){ //답글버튼을 누르면
 					formData.attr("action","${cpath}/board/reply"); //action 속성을 reply URL경로로 바꿔준다 
+					formData.attr("method", "get");
 				}else if(btn == "modify"){
 					formData.attr("action","${cpath}/board/modify"); 
+					formData.attr("method", "get");
 				}else if(btn == "list"){
 					formData.attr("action","${cpath}/board/list"); 
-					formData.find("#idx").remove(); //id="frm"요소안에 id="idx"를 찾아서 삭제한다
+					formData.find("#idx").remove(); //list 페이지로 이동할 때는 보통 게시글 번호(idx)가 필요 없기 때문에
+					                                //id="frm"요소안에 id="idx"를 찾아서 삭제한다
+					formData.attr("method", "get");
+				}else if("remove"){
+					if(!confirm("게시글을 삭제하시겠습니까?")) {
+				        return; //취소를 누르면 함수종료 된다
+				    }	
+					
+					formData.attr("action", "${cpath}/board/remove");
+					formData.attr("method", "post");
 				}
 				
 				formData.submit(); //form태그의 id="frm"에 submit을 작동한다		
 			});
-			loadCmt();    //비동기방식으로 댓글 리스트 가져오기 기능
 			
-			likeCount();  //likeCount 불러오기 기능
-					
-			selectLike(); //Like객체 likeAvailable 불러오기
+			
+			
+			//게시글 작성자 클릭시 프로필 보이기 기능 
+			//.writer 클래스를 가진 요소를 클릭하면 실행
+			//document에 이벤트를 위임(delegate)한 방식
+			$(document).on("click", ".writer", function(e) {	
+				e.preventDefault();
+				
+			    var memID = $(this).data("writer"); 		   
+
+			    $.ajax({
+			        url: "${cpath}/member/writerInfo",
+			        type: "get",
+			        data: { "memID" : memID},
+			        dataType: "json",
+			        success: function(writerInfo) {	   
+			        	$("#writerName").text("[이름] "+ writerInfo.memName);
+			        	$("#writerMajor").text("[전공] "+ writerInfo.memMajor);
+			        	
+			        	$("#writerID").text("[학번] " + writerInfo.memID);	
+			        	$("#writerID").data("writer_ID" , writerInfo.memID); 
+			        	//id가 memID인 요소 내부에 "writer_ID"라는 사용자 정의 데이터 키로 실제 아이디 값을 숨겨서 저장한다
+			        	//화면에는 보이지 않지만 JS에서 꺼내 쓸 수 있도록 데이터를 저장하는 코드
+			        	
+			            $("#writerUserCode").text("[회원코드]: "+ writerInfo.memUserCode);
+
+			            $("#writerImg").attr("src",  writerInfo.memProfile             // writerInfo.memProfile에 
+			            		? "${cpath}/profile_upload/" + writerInfo.memProfile // 값이 있으면 이 경로
+			            		: "${cpath}/resources/images/default.png");			   // 값이 없으면 기본 이미지
+			            $("#writerModal").modal("show");
+			        },
+			        error: function() {
+			            alert("작성자 정보를 가져오는데 실패했습니다.");
+			        }
+			    });
+			});
+			
+			
+			//프로필에서 메시지보내기 폼으로 이동
+			$("#regBtnProfile").on("click", function () {
+			    window.location.href = "${cpath}/message/sendMsgForm?toID=" + $("#writerID").data("writer_ID");
+			    //writer_ID는 JS .writer에서 온거다
+			});
+			
+			loadCmt();    //비동기방식으로 댓글 리스트 가져오기 기능			
+			likeCount();  //likeCount 불러오기 기능				
+			selectLike(); //Like객체 likeAvailable 불러오기		
+			attached_dataName(); //첨부파일 이름 보기좋게
+
 		}); //end ready()
+		
+		
 		
 		
 		//비동기방식으로 댓글리스트를 가져오는 기능
@@ -210,22 +340,30 @@
 				
 				//프로필 이미지가 있으면 업로드 경로의 이미지를 사용하고, 없으면 기본 이미지를 사용
 			    var imgSrc = obj.memProfile 
-                ? "${cpath}/resources/upload/" + obj.memProfile 
+                ? "${cpath}/profile_upload/" + obj.memProfile 
                 : "${cpath}/resources/images/default.png"; 
                 
                 listHtml += "<td style='text-align:center; vertical-align:middle; width:80px;'>"
-                listHtml += "<img style='width:30px; height:30px;' class='img-circle' src='" + imgSrc + "' />";
+                listHtml += "<img style='width:40px; height:40px;' class='img-circle' src='" + imgSrc + "' />";
                 listHtml += "</td>";  
                 
-				listHtml += "<td style='text-align:center; vertical-align:middle; width:120px;'>" + obj.memNickName + "</td>";
+            
+                
+                listHtml += "<td class='writer' data-writer='" + obj.memID + "' style='text-align:center; vertical-align:middle; width:80px;'>";
+    			listHtml += "<a href='#' class='writer-link'>" + obj.memName + "</a></td>";
+				
+				
+				listHtml += "<td style='text-align:center; vertical-align:middle; width:110px;'>" + obj.memMajor + "</td>";
      
 				//if문으로 삭제유무 표시
-				if (obj.cmtAvailable == 0) {
-					listHtml += "<td><textarea class='form-control' readonly='readonly' rows='1' cols=''>";
-					listHtml += "작성자에 의해 삭제된 댓글입니다.</textarea></td>";
+				if (obj.cmtAvailable == 0) {				
+					listHtml += "<td><span class='form-control' style='color: #999;'>"; 
+					listHtml += "작성자에 의해 삭제된 댓글입니다.</span></td>";					
+				
 				} else if (obj.cmtAvailable == 1) {
-					listHtml += "<td><textarea class='form-control' readonly='readonly' rows='1' cols=''>"; 
-					listHtml += obj.cmtContent + "</textarea></td>";
+					listHtml += "<td><span class='form-control' style='height: auto; min-height: 40px; white-space: normal; word-break: break-all;'>"; 
+					var cleanContent = obj.cmtContent.replace(/\n/g, "<br>");				
+					listHtml += cleanContent + "</span></td>";
 				}	
 
 				listHtml += "<td style='text-align:center; vertical-align:middle; width:180px;'>" + formatted + "</td>"; //댓글날짜		
@@ -236,10 +374,10 @@
 				if (obj.cmtAvailable == 0) {									
 					listHtml += "<button disabled type='button' class='btn btn-default btn-sm'>삭제됨</button>";					
 				} else if (obj.cmtAvailable == 1 &&  memID == obj.memID) {				
-					listHtml += "<button type='button' class='btn btn-primary btn-sm'"; 		
+					listHtml += "<button type='button' class='btn btn-custom btn-sm'"; 		
 					listHtml += "onclick='cmtDelete(" + obj.cmtIdx + ")'>삭제</button>";		
 				} else if (obj.cmtAvailable == 1 &&  memID != obj.memID) {				
-					listHtml += "<button disabled type='button' class='btn btn-primary btn-sm'"; 		
+					listHtml += "<button disabled type='button' class='btn btn-custom btn-sm'"; 		
 					listHtml += "onclick='cmtDelete(" + obj.cmtIdx + ")'>삭제</button>";		
 				}
 				listHtml += "</td>";	
@@ -363,7 +501,7 @@
 		//사용자가 좋아요를 누른 상태라면 버튼을 좋아요취소 상태로 변경
 		function likeView(data){
 			if (data == 1) {
-			    $("#likeBtn").text("♡").attr("onclick", "unLike()")
+			    $("#likeBtn").text("♡ 좋아요").attr("onclick", "unLike()")
 			    .removeClass()
 		        .addClass("btn btn-danger btn-sm"); 
 			}
@@ -405,12 +543,21 @@
 		//unlike 후 버튼 텍스트, 스타일을 기본 '좋아요' 상태로 초기화하고
 		// 클릭 시 likePlus()을 호출하도록 이벤트를 변경
 		function unlikeView(){
-			 $("#likeBtn").text("♡").attr("onclick", "likePlus()")
+			 $("#likeBtn").text("♡ 좋아요").attr("onclick", "likePlus()")
 			 .removeClass()
 		     .addClass("btn btn-default btn-sm");
 		};
-
 		
+		//첨부파일이름 조정
+		function attached_dataName(){	
+			var attached_data = $("#attached_data").text();
+		
+			if (attached_data.includes("_")) { 
+				new_attached_data = attached_data.substring(attached_data.indexOf("_") + 1);
+  			}
+			
+			$("#attached_data").text(new_attached_data);
+		}
 	</script>
 	
 </body>

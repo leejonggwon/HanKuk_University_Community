@@ -36,8 +36,8 @@ public class MemberServiceImpl implements MemberService {
 
 		//작성자 정보를 조회/반환
 		@Override
-		public Member writerInfo(String writer) {		
-			return mapper.writerInfo(writer);
+		public Member writerInfo(String memID) {		
+			return mapper.writerInfo(memID);
 		}
 
 		//회원가입
@@ -57,4 +57,18 @@ public class MemberServiceImpl implements MemberService {
 		public Member fromIDInfo(String memID) {
 			return mapper.fromIDInfo(memID);
 		}
+
+		//프로필이미지삭제
+		@Override
+		public int imageDelete(String memID) {	
+			return mapper.imageDelete(memID);
+		}
+
+		//패스워드변경
+		@Override
+		public int passwordUpdate(Member m) {
+			return mapper.passwordUpdate(m);
+		}
+
+
 }

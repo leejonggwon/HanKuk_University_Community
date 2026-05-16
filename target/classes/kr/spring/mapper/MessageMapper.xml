@@ -72,13 +72,12 @@
 		SELECT * FROM CM_MESSAGE WHERE MSGIDX = #{msgIdx}
 	</select>
 	
-	
 
 	
 	<!-- 메세지보내기 -->
 	<insert id="sendMsg" parameterType="kr.spring.entity.Message">
-		INSERT INTO CM_MESSAGE(TOID, FROMID, MSGTITLE, MSGCONTENT, MSGIMGPATH)
-		VALUES(#{toID}, #{fromID}, #{msgTitle}, #{msgContent}, #{msgImgpath})
+		INSERT INTO CM_MESSAGE(TOID, FROMID, FROMNAME, FROMMAJOR, MSGTITLE, MSGCONTENT, ATTACHED_DATA)
+		VALUES(#{toID}, #{fromID}, #{fromName}, #{fromMajor}, #{msgTitle}, #{msgContent}, #{attached_data})
 	</insert>
 	
 	<!-- 받은메세지삭제하기 -->

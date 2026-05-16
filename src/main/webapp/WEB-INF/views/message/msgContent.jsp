@@ -11,44 +11,56 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading">받은 메세지</div>
 		<div class="panel-body">
 		<form id="frm">
-			<button data-btn="senMsgForm" class="btn btn-primary btn-sm pull-left" style="margin: 0px 0px 15px 0px;">답장하기</button>					
-			<button data-btn="deleteMsg" class="btn btn-danger btn-sm pull-left" style="margin: 0px 0px 15px 5px;"">삭제</button> 
-			<button data-btn="msgList" class="btn btn-success btn-sm pull-left" style="margin: 0px 0px  15px 5px;">
+			<button data-btn="senMsgForm" class="btn btn-custom btn-sm pull-left" style="margin: 0px 0px 15px 0px;">답장하기</button>					
+			<button data-btn="deleteMsg" class="btn btn-default btn-sm pull-left" style="margin: 0px 0px 15px 5px;"">삭제</button> 
+			<button data-btn="msgList" class="btn btn-default btn-sm pull-left" style="margin: 0px 0px  15px 5px;">
 				<span class="glyphicon glyphicon-folder-open"></span>&nbsp; 받은 메세지함 이동
 			</button> 	
 			
 			<table class="table table-bordered table-hover">									 	
 				<tr>
-					<td style="text-align: center; vertical-align: middle;">제목</td>
+					<td style="text-align: center; vertical-align: middle; width: 15%;">제목</td>
 					<td><c:out value="${vo.msgTitle}"/></td>
 				</tr>
 				<tr>
-					<td id="fromID" style="text-align: center; vertical-align: middle;">보낸사람</td>
+					<td id="fromID" style="text-align: center; vertical-align: middle;">발신자 아이디</td>
 					<td>${vo.fromID}</td>
+				</tr>
+				<tr>
+					<td style="text-align: center; vertical-align: middle;">이름</td>
+					<td>${vo.fromName}</td>
+				</tr>
+				<tr>
+					<td style="text-align: center; vertical-align: middle;">전공</td>
+					<td>${vo.fromMajor}</td>
 				</tr>
 				<tr>
 					<td id="msgContent" style="text-align: center; vertical-align: middle;">내용</td>
 					<td>
-						<textarea class="form-control" readonly="readonly" rows="8" cols=""><c:out value="${vo.msgContent}"/></textarea>
-						
-						<c:if test="${not empty vo.msgImgpath}">
-						<br>
-							<img src="${cpath}/resources/message/${vo.msgImgpath}" style="max-width:100%; height:auto;">
-						</c:if>
+						<textarea class="form-control" readonly="readonly" rows="8" cols=""><c:out value="${vo.msgContent}"/></textarea>									
 					</td>
-				</tr>			
+				</tr>		
+				
+				<c:if test="${not empty vo.attached_data}">
+					<tr>
+						<td style="text-align: center">다운로드링크</td>
+						<td><a id="attached_data" href="${cpath}/message/download/${vo.attached_data}">${vo.attached_data}</a></td>
+					</tr>			
+				</c:if>
+					
 				</table>
 				
 				<input id="toID" type="hidden" name="toID" value="${vo.fromID}">
@@ -63,13 +75,13 @@
 		</form>	
 	
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %>
 	  </div>
 	</div>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-
+			attached_dataName(); //첨부파일 이름 보기좋게
 		});
 		
 		$("button").on("click", function() {
@@ -88,6 +100,19 @@
 			}
 			formData.submit();
 		});
+		
+		//첨부파일이름 조정
+		function attached_dataName(){	
+			var attached_data = $("#attached_data").text();
+		
+			if (attached_data.includes("_")) { 
+				new_attached_data = attached_data.substring(attached_data.indexOf("_") + 1);
+  			}
+			
+			$("#attached_data").text(new_attached_data);
+		}
+		
+		
 
 	</script>
 	

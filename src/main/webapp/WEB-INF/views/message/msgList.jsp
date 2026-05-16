@@ -11,13 +11,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading"><span class="glyphicon glyphicon-folder-open"></span> 
@@ -26,9 +27,9 @@
 		</div>
 		<div class="panel-body">
 						
-			<button id="deleteBtn" class="btn btn-danger btn-sm pull-left" style="margin: 0px 0px 15px 0px;">삭제</button>
-			<button id="regBtn" class="btn btn-primary btn-sm pull-left" style="margin: 0px 0px 15px 5px;">메세지 쓰기</button>	
-			<button id="rcdBtn" class="btn btn-warning btn-sm pull-left" style="margin: 0px 0px 15px 5px;">
+			<button id="deleteBtn" class="btn btn-default btn-sm pull-left" style="margin: 0px 0px 15px 0px;">삭제</button>
+			<button id="regBtn" class="btn btn-custom btn-sm pull-left" style="margin: 0px 0px 15px 5px;">메세지 쓰기</button>	
+			<button id="rcdBtn" class="btn btn-default btn-sm pull-left" style="margin: 0px 0px 15px 5px;">
 				 <span class="glyphicon glyphicon-send"></span>&nbsp; 보낸 메세지함 이동 
 			</button>	
 			
@@ -44,7 +45,7 @@
 					<div class="form-group">
 						<input type="text" value="${pageMaker.cri.keyword}" class="form-control" name="keyword">
 					</div>
-					<button type="submit" class="btn btn-light btn-sm">검색</button>									
+					<button type="submit" class="btn btn-light btn-custom">검색</button>									
 				</form>
 			</div>
 						
@@ -53,8 +54,10 @@
 					<tr>
 						<th style="width: 7%; text-align: center;">체크</th>
 						<th style="width: 9%; text-align: center;">열람상태</th>
-			            <th style="width: 12%; text-align: center;">발신자 아이디</th>
-			            <th style="width: 57%; text-align: center;">제목</th>
+			            <th style="width: 9%; text-align: center;">발신자 아이디</th>
+			            <th style="width: 9%; text-align: center;">이름</th>
+			            <th style="width: 9%; text-align: center;">전공</th>
+			            <th style="width: 42%; text-align: center;">제목</th>
 			            <th style="width: 15%; text-align: center;">발송일자</th>
 					</tr>
 				</thead>
@@ -74,10 +77,16 @@
 				            		<td style="text-align:center; color: #999999;">열람</td>
 				            	</c:if>
 	
-								<td style="text-align:center" class="writer" data-writer="${vo.fromID}">
-									<a href="#"> ${vo.fromID} </a>
+								<td style="text-align:center">
+									${vo.fromID}
 								</td>
-								
+								<td style="text-align:center" class="writer" data-writer="${vo.fromID}">
+									<a href="#"> ${vo.fromName} </a>
+								</td>
+							
+								<td style="text-align:center">
+									${vo.fromMajor}
+								</td>							
 				                <td>
 				                	<a class="move" href="${vo.msgIdx}">                                                                                          					                	
 					                		${vo.msgTitle}		              
@@ -150,7 +159,7 @@
 			  </form>
 
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %> 
 	  </div>
 	</div>
 	
@@ -176,24 +185,25 @@
    </div>
    
    
-   <!-- 메시지 발신자 정보를 띄워줄 모달 -->
+   <!-- 작성자 정보를 띄워줄 모달 -->
 	<div class="modal fade" id="writerModal" role="dialog">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
+	  <div class="modal-dialog">  
+	    <div class="modal-content panel-primary" id="writerType">
 	      <div class="modal-header panel-heading">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        <h4 class="modal-title">작성자 정보</h4>
 	      </div>
 	      
 	      <div class="modal-body text-center">
-	        <img id="memProfile" src="" 
-	             style="width:120px; height:120px; border-radius:50%; margin-bottom:10px;">     
-	        <p id="memNickName" style="font-size:16px; font-weight:bold;"></p>  
-	        <p id="memID" style="font-size:16px;"></p>           
-	        <p id="memName" style="font-size:16px;"></p>
-	        <button id="regBtn-profile" class="btn btn-primary btn-sm">메시지 보내기</button>
+	        <img id="writerImg" src="" style="width:120px; height:120px; border-radius:50%; margin-bottom:10px;">     
+	       
+	        <p id="writerID" style="font-size:16px;"></p>           
+	        <p id="writerName" style="font-size:16px;"></p>
+	        <p id="writerMajor" style="font-size:16px;"></p>
+	        <p id="writerUserCode" style="font-size:16px;"></p>
+	        
+	        <button id="regBtnProfile" class="btn btn-custom btn-sm">메세지 보내기</button>
 	      </div>
-	      
 	      
 	      <div class="modal-footer">
 	      	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -263,6 +273,10 @@
 		$("#deleteBtn").click(function(e) {
 			e.preventDefault(); //브라우저가 버튼 누르자마자 form 제출하려고 해서 그거 막는기능
 			
+			if(!confirm("메일을 삭제하시겠습니까?")) {
+		        return; //취소를 누르면 함수종료 된다
+		    }	
+			
 		    const checkedValues = []; //체크박스 선택한 값들 
 		    
 			//체크된 msgCheck 요소들을 → checkedValues에 값이 입력한다
@@ -289,26 +303,30 @@
 		}); //삭제체크박스버튼
 		
 		
-		//메시지 발신자 클릭시 프로필 보이기 기능 
+		//게시글 작성자 클릭시 프로필 보이기 기능 
 		$(".writer").on("click", function() {
-		    var memID = $(this).data("writer");
 			
+		    var memID = $(this).data("writer"); 		   
+
 		    $.ajax({
-		        url: "${cpath}/member/fromIDInfo",
+		        url: "${cpath}/member/writerInfo",
 		        type: "get",
 		        data: { "memID" : memID},
 		        dataType: "json",
-		        success: function(fromIDInfo) {	  
-		        	//id가 memID인 요소에 "ID: " + 실제 아이디 값을 화면에 표시한다
-		        	$("#memID").text("ID: " + fromIDInfo.memID);  
-		        	//id가 memID인 요소 내부에 "ID"라는 사용자 정의 데이터 키로 실제 아이디 값을 숨겨서 저장한다
+		        success: function(writerInfo) {	   
+		        	$("#writerName").text("[이름]: "+ writerInfo.memName);
+		        	$("#writerMajor").text("[전공]: "+ writerInfo.memMajor);
+		        	
+		        	$("#writerID").text("[학번]: " + writerInfo.memID);	
+		        	$("#writerID").data("writer_ID" , writerInfo.memID); 
+		        	//id가 memID인 요소 내부에 "writer_ID"라는 사용자 정의 데이터 키로 실제 아이디 값을 숨겨서 저장한다
 		        	//화면에는 보이지 않지만 JS에서 꺼내 쓸 수 있도록 데이터를 저장하는 코드
-		        	$("#memID").data("ID" , fromIDInfo.memID);    
-		        	$("#memNickName").text("Nick: " + fromIDInfo.memNickName);
-		            $("#memName").text("Name: "+ fromIDInfo.memName);
-		            $("#memProfile").attr("src",  fromIDInfo.memProfile             
-		            		? "${cpath}/resources/upload/" + fromIDInfo.memProfile 
-		            		: "${cpath}/resources/images/default.png");			   
+		        	
+		            $("#writerUserCode").text("[회원코드]: "+ writerInfo.memUserCode);
+
+		            $("#writerImg").attr("src",  writerInfo.memProfile             // writerInfo.memProfile에 
+		            		? "${cpath}/profile_upload/" + writerInfo.memProfile // 값이 있으면 이 경로
+		            		: "${cpath}/resources/images/default.png");			   // 값이 없으면 기본 이미지
 		            $("#writerModal").modal("show");
 		        },
 		        error: function() {
@@ -317,9 +335,12 @@
 		    });
 		});
 		
+		
+		
 		//프로필에서 메시지보내기 폼으로 이동
-		$("#regBtn-profile").on("click", function () {
-		    window.location.href = "${cpath}/message/sendMsgForm?toID=" + $("#memID").data("ID");
+		$("#regBtnProfile").on("click", function () {
+		    window.location.href = "${cpath}/message/sendMsgForm?toID=" + $("#writerID").data("writer_ID");
+		    //writer_ID는 JS .writer에서 온거다
 		});
 
 	}); //ready
@@ -328,7 +349,7 @@
 	
 	function checkModal(result) {
 	    if (!result) return;   // null, undefined, "", 0, false 모두 걸러짐
-
+	    $("#messageType").attr("class", "modal-content panel-primary");
 	    $("#modal-title").text("메세지 전송");
 	    $("#modal-body").text(result + " 님께 성공적으로 메세지를 보냈습니다.");
 	    $("#myMessage").modal("show");

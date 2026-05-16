@@ -24,8 +24,8 @@
 	<!-- parameterType="kr.spring.entity.Reservation" 이라고 선언되어 있으면
          MyBatis는 전달된 파라미터 객체를 Reservation 객체 하나라고 인식하므로 그대로 적으면 된다 -->
 	<insert id="insertR" parameterType="kr.spring.entity.Reservation">
-		INSERT INTO CM_RESERVATION(SEATNUM, SEATNAME, MEMID, MEMNAME, MEMNICKNAME, ENDTIME)
-		VALUES(#{seatNum}, #{seatName}, #{memID}, #{memName}, #{memNickName}, NULL)
+		INSERT INTO CM_RESERVATION(SEATNUM, SEATNAME, MEMID, MEMNAME, ENDTIME)
+		VALUES(#{seatNum}, #{seatName}, #{memID}, #{memName}, NULL)
 	</insert>
 	
 

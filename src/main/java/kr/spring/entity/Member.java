@@ -15,12 +15,18 @@ public class Member {
 	private String memID;
 	private String memPassword;
 	private String memName;
-	private String memNickName;
+
 	private int memAge;
 	private String memGender;
 	private String memEmail;
 	private String memProfile;
 	private int memStatus;
+	
+	private String memMajor;
+	private String memUserCode;
+	private String memRole;
+	
+	
 
 }
 

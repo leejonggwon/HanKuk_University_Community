@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -19,7 +19,7 @@
 <body>
 
 
-	<div class="container">
+
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	 
 	  <div class="panel panel-default">
@@ -50,7 +50,7 @@
 		
 	
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %>
 	  </div>
 	</div>
 	
@@ -60,7 +60,6 @@
 	});
 	
 
-	
 	//좌석발권
 	//Seat테이블 seatAvailable 0 → 1 변경하기
 	function seatAvailable(seatNum){
@@ -136,12 +135,11 @@
 		var seatName = seat.seatName;
 		var memID = "${mvo.memID}";
 		var memName = "${mvo.memName}";	
-		var memNickName = "${mvo.memNickName}";	
 		
 	    $.ajax({
 	        url: "${cpath}/seat/insertR",
 	        type: "post",
-	        data: { "seatNum": seatNum , "seatName": seatName , "memID": memID , "memName": memName, "memNickName": memNickName },
+	        data: { "seatNum": seatNum , "seatName": seatName , "memID": memID , "memName": memName },
 	        success: function() {
 	        	alert("발권되었습니다.");
 	        		window.location.href = "${cpath}/seat/rInfo";

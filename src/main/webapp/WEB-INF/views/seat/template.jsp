@@ -17,7 +17,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
+
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <h2>MVC Communication</h2>
 	  <div class="panel panel-default">

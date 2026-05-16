@@ -13,8 +13,8 @@
 	
 	<!-- 댓글등록하기 -->
 	<insert id="cmtInsert" parameterType="kr.spring.entity.Comment"> 
-		INSERT INTO CM_COMMENT(IDX, CMTCONTENT, MEMID, MEMNAME, MEMNICKNAME, MEMProfile) 
-		VALUES (#{idx}, #{cmtContent}, #{memID}, #{memName}, #{memNickName}, #{memProfile})
+		INSERT INTO CM_COMMENT(IDX, CMTCONTENT, MEMID, MEMNAME, MEMMAJOR, MEMProfile) 
+		VALUES (#{idx}, #{cmtContent}, #{memID}, #{memName}, #{memMajor}, #{memProfile})
 	</insert>
 	
 	

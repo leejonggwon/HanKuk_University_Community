@@ -17,7 +17,6 @@ public class Reservation {
 	private String seatName;
 	private String memID;
 	private String memName;
-	private String memNickName;
 	private Date startTime;
 	private Date endTime;
 	private int endTimeStatus;

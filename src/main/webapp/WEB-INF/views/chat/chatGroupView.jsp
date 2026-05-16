@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -174,7 +174,7 @@ background-position: center;
 			</tr>
 		</table>
 		<div class="chat_div">
-			<input type="text" class="chat" onkeypress="if(event.keyCode==13)$('.chat_btn').click();">
+			<input placeholder="메시지 입력" type="text" class="chat" onkeypress="if(event.keyCode==13)$('.chat_btn').click();">
 			<input type="button" class="chat_btn" value="내용전송">
 		</div>
 	</div>

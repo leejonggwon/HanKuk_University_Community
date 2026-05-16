@@ -6,7 +6,7 @@
 	<select id="writerInfo" parameterType="string" resultType="kr.spring.entity.Member">
 	    SELECT *
 	    FROM CM_MEMBER
-	    WHERE MEMNICKNAME = #{writer}
+	    WHERE MEMID = #{memID}
 	</select>
 
 	<!-- resultType은 꼭 명시를 해야한다 -->
@@ -20,8 +20,8 @@
 	
 	<!-- insert는 resultType을 못쓰지만, mapper 인터페이스에서 리턴 타입을 int로 주면 MyBatis가 자동으로 성공한 행 수를 돌려준다 -->
 	<insert id="join" parameterType="kr.spring.entity.Member"> 
-		INSERT INTO CM_MEMBER(MEMID, MEMPASSWORD, MEMNAME, MEMNICKNAME, MEMAGE, MEMGENDER, MEMEMAIL, MEMPROFILE) 
-		VALUES (#{memID}, #{memPassword}, #{memName}, #{memNickName}, #{memAge}, #{memGender}, #{memEmail}, #{memProfile})
+		INSERT INTO CM_MEMBER(MEMID, MEMPASSWORD, MEMNAME, MEMAGE, MEMGENDER, MEMEMAIL, MEMPROFILE, MEMMAJOR, MEMUSERCODE, MEMROLE) 
+		VALUES (#{memID}, #{memPassword}, #{memName}, #{memAge}, #{memGender}, #{memEmail}, #{memProfile}), #{memMajor}, #{memUserCode}, #{memRole})
 	</insert>
 
 	<update id="profileUpdate" parameterType="kr.spring.entity.Member">
@@ -32,9 +32,18 @@
 	
 	<update id="update" parameterType="kr.spring.entity.Member">
    		UPDATE CM_MEMBER
-  		SET MEMPASSWORD = #{memPassword}, MEMNAME = #{memName}, MEMNICKNAME = #{memNickName}, MEMAGE = #{memAge}, MEMGENDER = #{memGender}, MEMEMAIL = #{memEmail}, MEMPROFILE = #{memProfile}
+  		SET  MEMEMAIL = #{memEmail}
   		WHERE MEMID = #{memID}
 	</update>
+	
+	<update id="passwordUpdate" parameterType="kr.spring.entity.Member">
+   		UPDATE CM_MEMBER
+  		SET  MEMPASSWORD = #{memPassword}
+  		WHERE MEMID = #{memID}
+	</update>
+	
+	
+	
 	
 	<!-- 메시지 작성자 프로필 조회 -->
 	<select id="fromIDInfo" parameterType="string" resultType="kr.spring.entity.Member">
@@ -42,6 +51,13 @@
 	    FROM CM_MEMBER
 	    WHERE MEMID = #{memID}
 	</select>
+	
+	<!-- 프로필이미지삭제 -->
+	<update id="imageDelete" parameterType="String">
+		UPDATE CM_MEMBER
+	   	SET MEMPROFILE = ''
+	  	WHERE MEMID = #{memID}
+	</update>
 	
 	
 

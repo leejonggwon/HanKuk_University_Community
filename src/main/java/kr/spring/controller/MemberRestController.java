@@ -38,10 +38,10 @@ public class MemberRestController {
 	// 작성자 정보 조회/반환
 	@GetMapping("/writerInfo")
 	@ResponseBody
-	public Member writerInfo(@RequestParam String writer) {  
+	public Member writerInfo(@RequestParam String memID) {  
 		
 		//JSON 형태로 반환된다 (memName, memProfile 등 포함)
-		Member writerInfo = service.writerInfo(writer); 
+		Member writerInfo = service.writerInfo(memID); 
 	    return writerInfo;
 	}
 	

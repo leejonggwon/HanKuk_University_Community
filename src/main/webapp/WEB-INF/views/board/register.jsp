@@ -11,13 +11,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spring MVC09</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading">Board</div>
@@ -25,10 +26,26 @@
 			<form id="frm"> 	
 			<table class="table table-hover table-bordered">
 			<input id="memID" type="hidden" name="memID" value="${mvo.memID}">
-			
-			<input type="hidden" id="page" name="page" value="${cri.page}">
-			<input type="hidden" id="perPageNum" name="perPageNum" value="${cri.perPageNum}">
-			
+			<input id="memMajor" type="hidden" name="memMajor" value="${mvo.memMajor}">
+						
+				<tr>
+					<td>카테고리</td>
+					<td>
+						<div class="form-inline justify-content-start"> 
+							<select id="category" name="category" class="form-control">
+								<option value="">카테고리</option>
+						        <option value="일상">일상</option>	
+							        <option value="학교생활">학교생활</option>					        
+						        <option value="질문">질문</option>
+						        <option value="스터디모집">스터디모집</option>
+						        <option value="동아리">동아리</option>
+						        <option value="홍보">홍보</option>
+						        <option value="취업진로">취업진로</option>
+						        <option value="거래나눔">거래나눔</option>
+							</select>
+						</div>	
+					</td>
+				</tr>	
 				<tr>
 					<td>제목</td>
 					<td><input required id="title" type="text" name="title" class="form-control"></td>
@@ -38,18 +55,22 @@
 					<td><textarea required id="content" rows="10" cols="" name="content" class="form-control"></textarea></td>
 				</tr>
 				<tr>
-					<td>파일</td>
-					<td><input id="file" type="file" name="imgpath" class="form-control"></td>
+					<td>이미지업로드</td>
+					<td><input type="file" id="uploadFile_img" name="imgpath" accept="image/*" class="form-control"></td>
+				</tr>	
+				<tr>
+					<td>첨부파일</td>
+					<td><input type="file" name="attached_data" class="form-control"></td>
 				</tr>			
 				<tr>
 					<td>작성자</td>
-					<td><input id="writer" type="text" name="writer" class="form-control" value="${mvo.memNickName}" readonly="readonly"></td>
+					<td><input id="writer" type="text" name="writer" class="form-control" value="${mvo.memName}" readonly="readonly"></td>
 				</tr> 
 				<tr>
 					<td colspan="2" style="text-align:center">
-						<button data-btn="register" type="button" class="btn btn-primary btn-sm">등록</button>
+						<button data-btn="register" type="button" class="btn btn-custom btn-sm">등록</button>
 						<button type="reset" class="btn btn-default btn-sm">취소</button>
-						<button data-btn="list" type="button" class="btn btn-sm btn-warning">목록</button>
+						<button data-btn="list" type="button" class="btn btn-sm btn-default">목록</button>
 					</td>
 				</tr>	
 			</table>
@@ -58,7 +79,7 @@
 			
 		</form>
 		</div>
-		<div class="panel-footer">스프링게시판 - 이종권</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %>
 	  </div>
 	</div>
 	
@@ -82,7 +103,29 @@
 					formData.find("#writer").remove();	
 								
 					
-				}else if(btn == "register"){			
+				}else if(btn == "register"){
+					
+					var file = $("#uploadFile_img")[0].files[0];
+					var category = $("#category").val();	
+	  				
+	  				if(!category){
+	  					alert("카테고리를 선택해주세요");
+	  					$("#category").focus();
+	  					return false; 
+	  				}
+	  				
+	  				// *먼저 파일이 있을 때만 영상 파일인지 체크해야한다	
+	  			    if (file) {         
+	  			        if (!file.type.startsWith("image/")) {
+	  			            alert("'이미지첨부'는 이미지 파일만 등록할 수 있습니다");
+	  			            $("#uploadFile_img").val(""); 
+	  			            return false; 
+	  			        }
+	  			    }
+	  				
+	  				
+	  				
+					
 					formData.attr("action", "${cpath}/board/register");
 					formData.attr("method", "post");
 					formData.attr("enctype", "multipart/form-data");		

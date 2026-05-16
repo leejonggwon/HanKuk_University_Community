@@ -11,14 +11,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
 
-	<div class="container">
+
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	
 	  <div class="panel panel-default">
@@ -40,21 +41,25 @@
 		<div class="panel-body">
 		<div>사용이력</div>
 		<br>
-			<table class="table table-bordered table-hover"> 
-				<tr class="active">
-					<td style="text-align: center">NO</td>
-					<td style="text-align: center">좌석번호</td>
-					<td style="text-align: center">좌석이름</td>
-					<td style="text-align: center">발권시간</td>
-					<td style="text-align: center">반납시간</td>		
-					<td style="text-align: center">사용자</td>		
-				</tr>
-				<tbody id="recordView">
-				<!-- 비동기 방식으로 가져온 게시글 나오게할 부분-->			
-				</tbody>
-			</table>		
+		
+			<div class="table-responsive" style="max-height: 400px;"> <!-- 스크롤기능 -->
+				<table class="table table-bordered table-hover"> 
+					<tr class="active">
+						<td style="text-align: center">NO</td>
+						<td style="text-align: center">좌석번호</td>
+						<td style="text-align: center">좌석이름</td>
+						<td style="text-align: center">발권시간</td>
+						<td style="text-align: center">반납시간</td>		
+						<td style="text-align: center">사용자</td>		
+					</tr>
+					<tbody id="recordView">
+					<!-- 비동기 방식으로 가져온 게시글 나오게할 부분-->			
+					</tbody>
+				</table>	
+			</div>
+				
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %>
 	  </div>
 	</div>
 	
@@ -123,12 +128,12 @@
 			    listHtml += "<td style='text-align: center'>" + vo.seatNum + "</td>";
 			    listHtml += "<td style='text-align: center'>" + vo.seatName + "</td>";
 			    listHtml += "<td style='text-align: center'> " + formatted + "</td>";
-			    listHtml += "<td style='text-align: center'>" + vo.memNickName + "</td>";		    
+			    listHtml += "<td style='text-align: center'>" + vo.memName + "</td>";		    
 			    listHtml += "</tr>";	
 			    listHtml += "</tbody>";			  
 			    listHtml += "<tr>";	
 			    listHtml += "<td colspan='4' align='center'>";	
-			    listHtml += "<button onclick='returnSeat()' class='btn btn-success btn-sm'>좌석반납하기</button>";	
+			    listHtml += "<button onclick='returnSeat()' class='btn btn-custom btn-sm'>좌석반납하기</button>";	
 			    listHtml += "</td>";	
 			    listHtml += "</tr>";
 			    listHtml += "</table>";
@@ -183,7 +188,7 @@
 				listHtml += "<td style='text-align: center'>" + vo.seatName + "</td>";
 				listHtml += "<td style='text-align: center'>" + formatted_startTime + "</td>";
 				listHtml += "<td style='text-align: center'>" + formatted_endTime + "</td>";
-				listHtml += "<td style='text-align: center'>" + vo.memNickName + "</td>";		
+				listHtml += "<td style='text-align: center'>" + vo.memName + "</td>";		
 				listHtml += "</tr>";
 
 			});

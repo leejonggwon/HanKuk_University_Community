@@ -9,182 +9,74 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<style>
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-	width: 70%;
-	margin: auto;
-}
-</style>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
  
 </head>
 <body>
-	<div class="container">
-	
-		<h2><img  style="display:inline-block; height:45px; margin-right:1px;" class="img-circle" alt="" src="${cpath}/resources/images/logo2.jpg" /> MVC University Communication</h2>
-		<div class="panel panel-default">
-			<div class="panel-heading">Login</div>
-			<div class="panel-body">
-			
-			<form action="${cpath}/member/loginProcess" method="post"> <!-- controller위치는 views 바로 아래에 있다 -->
-				<table style="text-align: center; border: 1px solid #dddddd" class ="table table-borderd">
-					<tr>
-						<td style="width: 110px; vertical-align: middle;">아이디</td>
-						<td><input type="text" name="memID" id="memID" class="form-control" maxlength="20" placeholder="아이디를 입력하세요"></td>						
-					</tr>
-					<tr>
-						<td style="width: 110px; vertical-align: middle;">비밀번호</td>
-						<td><input required="required" type="password" name="memPassword" id="memPassword" class="form-control" maxlength="20" placeholder="비밀번호를 입력하세요"></td>								
-					</tr>
-					<tr>
-						<td colspan ="2">
-							<span id="passMessage" style="text-align:center"></span> 
-							<input type="submit" class="btn btn-success" value="로그인">
-							<a type="button" class="btn btn-warning" href="${cpath}/member/joinForm">회원가입</a>														
-							<!-- <button class="btn btn-warning" onclick="location.href='${cpath}/member/joinForm'">회원가입하기</button> -->
-						</td>
-					</tr>
-				</table>
-			</form> <!-- 로그인폼 -->
-			
-			<!-- 이미지 슬라이드 -->
-			<div class="panel-body">
-		    <div id="myCarousel" class="carousel slide">
-		      <!-- Indicators -->
-		      <ol class="carousel-indicators">
-		        <li class="item1 active"></li>
-		        <li class="item2"></li>
-		        <li class="item3"></li>
-		        <li class="item4"></li>
-		      </ol>
 		
-	     	    <!-- Wrapper for slides -->
-		      <div class="carousel-inner" role="listbox">
-		
-		        <div class="item active">
-		          <img src="${cpath}/resources/loginImgs/communication1.jpg" alt="Chania" width="460" height="345">
-		          <div class="carousel-caption">
-		            <h3></h3>
-		            <p></p>
-		          </div>
-		        </div>
-		
-		        <div class="item">
-		          <img src="${cpath}/resources/loginImgs/communication2.png" alt="Chania" width="460" height="345">
-		          <div class="carousel-caption">
-		            <h3></h3>
-		            <p></p>
-		          </div>
-		        </div>
-		    
-		        <div class="item">
-		          <img src="${cpath}/resources/loginImgs/communication3.png" alt="Flower" width="460" height="345">
-		          <div class="carousel-caption">
-		            <h3></h3>
-		            <p></p>
-		          </div>
-		        </div>
-		
-		        <div class="item">
-		          <img src="${cpath}/resources/loginImgs/communication4.png" alt="Flower" width="460" height="345">
-		          <div class="carousel-caption">
-		            <h3></h3>
-		            <p></p>
-		          </div>
-		        </div>
-		        
-		        <div class="item">
-		          <img src="${cpath}/resources/loginImgs/communication5.png" alt="Flower" width="460" height="345">
-		          <div class="carousel-caption">
-		            <h3></h3>
-		            <p></p>
-		          </div>
-		        </div>
-		  
-		      </div>
-		
-	  	    <!-- Left and right controls -->
-		      <a class="left carousel-control" href="#myCarousel" role="button">
-	   	        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		        <span class="sr-only">Previous</span>
-		      </a>
-		      <a class="right carousel-control" href="#myCarousel" role="button">
-		        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		        <span class="sr-only">Next</span>
-		      </a>
-	  	    </div>	
-			</div><!-- 이미지 슬라이드 -->
-			
-			</div>
-			<div class="panel-footer">MVC Communication - All rights reserved</div>
-		</div>
-	</div>
-	
+	<div class="container" style="margin-top: 200px;">
+	<div class="row" style="display: flex; align-items: center;">
 
-   
-   <!-- 회원가입 실패시 띄워줄 모달창 -->
-   <div class="modal fade" id="myMessage" role="dialog">
-     <div class="modal-dialog">
-     
-       <!-- 모달내용-->
-       <div id="messageType" class="modal-content">
-         <div class="modal-header panel-heading"> <!-- panel-heading을 넣어야 헤더 스타일이 적용된다 -->
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 class="modal-title">${msgType}</h4> <!--MemberController에서 실패하면 joinForm에서 다시 이동할때 값을 보내준다 -->
-         </div>
-         <div class="modal-body">
-           <p>${msg}</p> 
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
-       </div>
-   
-     </div>
-   </div>
+	<!-- 좌측-->
+	<div class="col-md-7">
+		<img src="${cpath}/resources/images/hku_main.png" style="max-width:100%; height:auto;">
+	</div>
+
+	<!-- 우측  -->
+	<div class="col-md-5">
+
+		<div style="border:1px solid #ddd; padding:40px; border-radius:10px; background-color:white; box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+
+		<div style="text-align: center;">
+		    <img src="${cpath}/resources/images/hku_community.png" style="width:100%; height:auto; ">
+		</div>
+
+		<form action="${cpath}/member/loginProcess" method="post">
+
+	
+			<div class="form-group">					
+				<input type="text" name="memID" id="memID" class="form-control" maxlength="20" placeholder="학번을 입력해주세요">
+			</div>
+	
+			<div class="form-group" style="margin-top:20px;">					
+				<input required="required" type="password" name="memPassword" id="memPassword" class="form-control" maxlength="20" placeholder="비밀번호를 입력해주세요">
+			</div>
+	
+			<div style="margin-top:25px;">
+				<span id="passMessage"></span>
+				<input type="submit" class="btn btn-custom btn-block" value="로그인">
+			</div>
+
+		</form>
+
+		</div>
+
+	</div>
+
+	</div>
+</div>
+
+ 	<%@ include file="/WEB-INF/views/common/message_modal.jsp" %>
+	<%@ include file="/WEB-INF/views/common/check_modal.jsp" %>
    
 	<script type="text/javascript">	
 		//회원가입 실패시 띄워줄 모달창 실행
 		//HTML 문서가 모두 로딩될 때까지 기다렸다가 그 안의 기능을 실행하겠다는 의미 
 		$(document).ready(function(){
+			
 			if(${not empty msgType}){ //EL식
 				if(${msgType eq "실패메세지"}){ //EL식
 					$("#messageType").attr("class", "modal-content panel-warning");
 				}else{
 					$("#messageType").attr("class", "modal-content panel-success");
 				}
-			$("#myMessage").modal("show"); //모달창 실행
-			};
-		
-			  // Activate Carousel
-			  $("#myCarousel").carousel();
-			    
-			  // Enable Carousel Indicators
-			  $(".item1").click(function(){
-			    $("#myCarousel").carousel(0);
-			  });
-			  $(".item2").click(function(){
-			    $("#myCarousel").carousel(1);
-			  });
-			  $(".item3").click(function(){
-			    $("#myCarousel").carousel(2);
-			  });
-			  $(".item4").click(function(){
-			    $("#myCarousel").carousel(3);
-			  });
-			    
-			  // Enable Carousel Controls
-			  $(".left").click(function(){
-			    $("#myCarousel").carousel("prev");
-			  });
-			  $(".right").click(function(){
-			    $("#myCarousel").carousel("next");
-			  });
+				$("#myMessage").modal("show"); //모달창 실행
 		});
 		
 		

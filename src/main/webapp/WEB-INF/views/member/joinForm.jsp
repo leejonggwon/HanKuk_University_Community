@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -53,10 +53,7 @@
 						<td style="width: 110px; vertical-align: middle;">사용자이름</td>
 						<td colspan ="2"><input required="required" type="text" name="memName" id="memName" class="form-control" maxlength="20" placeholder="이름을 입력하세요"></td>				
 					</tr>
-					<tr>
-						<td style="width: 110px; vertical-align: middle;">닉네임</td>
-						<td colspan ="2"><input required="required" type="text" name="memNickName" id="memNickName" class="form-control" maxlength="20" placeholder="닉네임을 입력하세요"></td>				
-					</tr>
+					
 					<tr>
 						<td style="width: 110px; vertical-align: middle;">나이</td>
 						<td colspan ="2"><input required="required" type="number" name="memAge" id="memAge" class="form-control" maxlength="20" placeholder="나이를 입력하세요"></td>				

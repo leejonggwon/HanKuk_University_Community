@@ -11,12 +11,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading">BookContent</div>
@@ -57,9 +59,9 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center">
-						<button data-btn="bookUpdate" type="button" class="btn btn-sm btn-primary">수정</button>
-						<button data-btn="bookDelete" type="button" class="btn btn-sm btn-danger">삭제</button>   									      					       
-						<button data-btn="bookList" type="button" class="btn btn-sm btn-warning">목록</button>
+						<button data-btn="bookUpdate" type="button" class="btn btn-sm btn-custom">수정</button>
+						<button data-btn="bookDelete" type="button" class="btn btn-sm btn-default">삭제</button>   									      					       
+						<button data-btn="bookList" type="button" class="btn btn-sm btn-default">목록</button>
 					</td>
 				</tr>
 			
@@ -74,7 +76,7 @@
 			</form>
 			
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %> 
 	  </div>
 	</div>
 	

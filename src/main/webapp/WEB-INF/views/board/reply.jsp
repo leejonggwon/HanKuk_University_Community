@@ -11,53 +11,116 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spring MVC09</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading">Board Reply</div>
 		<div class="panel-body">
-			<form id="frm" method="post"> 
+			<form id="frm"> 
 				
 				<input type="hidden" name="page" value="${cri.page}">
 				<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+				<input type="hidden" id="type" name="type" value="${cri.type}">
+			  	<input type="hidden" id="keyword" name="keyword" value="${cri.keyword}">
 				
+				<input id="memMajor" type="hidden" name="memMajor" value="${mvo.memMajor}">
+				<input id="category" type="hidden" name="category" value="${vo.category}">
 				<input id="memID" type="hidden" name="memID" value="${mvo.memID}">
 				<!-- 부모글의 게시글 번호를 넘긴다 -->
 				<input id="idx" type="hidden" name="idx" value="${vo.idx}">
 				
+				
+				<div class="form-group" >
+					<label>분류</label>
+					
+					<div class="form-inline justify-content-start"> 
+						<select disabled id="category" name="category" class="form-control">			
+							<option value="">카테고리</option>			
+					        <option value="일상"
+					        ${vo.category == '일상' ? 'selected' : ''}>
+					        일상
+					        </option>
+					
+					        <option value="학교생활"
+					        ${vo.category == '학교생활' ? 'selected' : ''}>
+					        학교생활
+					        </option>
+					
+					        <option value="질문"
+					        ${vo.category == '질문' ? 'selected' : ''}>
+					        질문
+					        </option>
+					
+					        <option value="스터디모집"
+					        ${vo.category == '스터디모집' ? 'selected' : ''}>
+					        스터디모집
+					        </option>
+					
+					        <option value="동아리"
+					        ${vo.category == '동아리' ? 'selected' : ''}>
+					        동아리
+					        </option>
+					
+					        <option value="홍보"
+					        ${vo.category == '홍보' ? 'selected' : ''}>
+					        홍보
+					        </option>
+					
+					        <option value="취업진로"
+					        ${vo.category == '취업진로' ? 'selected' : ''}>
+					        취업진로
+					        </option>
+					
+					        <option value="거래나눔"
+					        ${vo.category == '거래나눔' ? 'selected' : ''}>
+					        거래나눔
+					        </option>			
+						</select>
+					</div>				
+				</div>
+				
 				<div class="form-group" >
 					<label>제목</label>
-					<input id="title" value="<c:out value='${vo.title}'/>" type="text" name="title" class="form-control">
+					<input id="title" type="text" name="title" class="form-control" placeholder="제목을 입력하세요">
 				</div>
 				<div class="form-group" >
 					<label>답글</label>
 					<textarea id="content" class="form-control" name="content" rows="10" cols="" placeholder="답글을 입력하세요"></textarea>
 				</div>
+				
+				<div class="form-group" >
+					<label>이미지파일</label>
+					<input type="file" name="imgpath" class="form-control">
+				</div> 
+				
+				<div class="form-group" >
+					<label>첨부파일</label>
+					<input type="file" name="attached_data" class="form-control">
+				</div> 
+
 				<div class="form-group" >
 					<label>작성자</label>
-					<input id="writer" value="${mvo.memNickName}" readonly="readonly" type="text" name="writer" class="form-control">
+					<input id="writer" value="${mvo.memName}" readonly="readonly" type="text" name="writer" class="form-control">
 				</div> 
 				
 				<div style="text-align:center">
-					<button data-btn="reply" type="button" class="btn btn-primary btn-sm">답글등록</button>
+					<button data-btn="reply" type="button" class="btn btn-custom btn-sm">답글등록</button>
 					<button data-btn="reset" type="button" class="btn btn-default btn-sm">취소</button>
-					<button data-btn="list" type="button" class="btn btn-warning btn-sm">목록</button>   	
+					<button data-btn="get" type="button" class="btn btn-sm btn-default">조회페이지</button>
+					<button data-btn="list" type="button" class="btn btn-default btn-sm">목록</button>   	
 				</div>
-				
-				<!-- type과 keyword를 넘기기위한 부분 추가하면 결과값(type, keyword)이 유지된다 -->
-			  	<input type="hidden" id="type" name="type" value="${cri.type}">
-			  	<input type="hidden" id="keyword" name="keyword" value="${cri.keyword}">
-			  				       		
+		  	  				       		
 			</form>
 			
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %>
 	  </div>
 	</div>
 	
@@ -78,11 +141,16 @@
 					formData.find("#writer").remove();	
 				}else if(btn == "reply"){			
 					formData.attr("action", "${cpath}/board/reply");
+					formData.attr("method", "post");
+					formData.attr("enctype", "multipart/form-data");
 				}else if (btn == "reset") {
 					formData[0].reset();
 					//<form> 태그를 가져와서 초기값으로 되돌린다
 					
 					return; //함수끝내는 키워드
+				}else if(btn == "get"){
+					formData.attr("action", "${cpath}/board/get");
+					formData.attr("method", "get");
 				}
 				formData.submit();
 			});

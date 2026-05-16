@@ -1,7 +1,8 @@
 package kr.spring.controller;
 
 import java.io.File;
-
+import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -75,8 +75,7 @@ public class MemberController {
 		// → 값이 null 이거나 빈 문자열("")인 경우, 또는 숫자가 0인 경우를 체크한다
 		if(m.getMemID() == null || m.getMemID().equals("") || //m.getMemID() == null는 jsp name값이 틀렸다는 의미
 		   m.getMemPassword() == null || m.getMemPassword().equals("") ||
-		   m.getMemName() == null || m.getMemName().equals("") ||
-	       m.getMemNickName() == null || m.getMemNickName().equals("") ||
+		   m.getMemName() == null || m.getMemName().equals("") ||	      
 		   m.getMemAge() == 0 ||
 		   m.getMemEmail() == null || m.getMemEmail().equals("") 
 		   ) {
@@ -132,22 +131,34 @@ public class MemberController {
 	@RequestMapping("/imageUpdate")
 	public String imageUpdate(HttpServletRequest request, RedirectAttributes rttr, HttpSession session) {
 		
+		// 파일업로드를 할 수 있게 도와주는 객체 (cos.jar)
+		// 파일업로드를 할 수 있게 도와주는 MultipartRequest 객체를 생성하기 위해서는
+		// 5개의 정보가 필요하다
+		// 요청데이터, 저장경로, 최대크기, 인코딩, 파일명 중복제거
 		MultipartRequest multi = null;
 		
 		//파일의 저장경로(request요청 객체가 필요하다) 
-		String savePath = request.getRealPath("resources/upload");
+		String savePath = "C:/cm_upload/profile_upload/"; //
+		System.out.println("savePath: " + savePath);
+		
+		File targetDir = new File(savePath);   //
+		if(!targetDir.exists()) {              //
+		    targetDir.mkdirs();                //
+		}                                      //
 		
 		
-		int fileMaxSize = 10 * 1024 * 1000; // 10mb까지 가능한 파일의 최대크기 
+		System.out.println("실제이미지주소: " + savePath);
+		
+		int fileMaxSize = 10 * 1024 * 1024; // 10mb까지 가능한 파일의 최대크기 
 		
 		System.out.println(savePath); //이미지가 저장된 경로 
 		
+		// 기존 해당 프로필 이미지 삭제
+		// - 로그인 한 사람의 프로필 값을 가져와야함
+		String memID = ((Member)session.getAttribute("mvo")).getMemID();
 		
-		//로그인한 회원의 프로필 정보를 업데이트 //세션에 저장된 데이터를 키(key)로 꺼낸다
-		Member mvo = (Member)session.getAttribute("mvo");
-		
-		//이미지 업로드 할 떄 기존 회원의 이미지를 삭제를 해주는 기능
-		String oldImg = mvo.getMemProfile(); //MemProfile 값 반환
+		// getMember 메소드는 memID와 일치하는 회원의 정보 (Member)를 가져온다
+		String oldImg = service.fromIDInfo(memID).getMemProfile();
 		
 		File oldFile = new File(savePath + "/" + oldImg);
 		if(oldFile.exists()) {
@@ -155,64 +166,68 @@ public class MemberController {
 		}
 		
 		try {
-			//파일업로드 기능수행 객체 생성 (폼 데이터 + 파일 데이터, 저장경로, 최대크기, 한글 인코딩, cos 라이브러리에서 제공하는 파일로 동일한 이름으로 파일업로드 시 숫자를 붙여주는 객체)
-			//multi: 내가 업로드한 파일은 객체안에 모두 있다 
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
-			
-		} catch (Exception e) {
-			System.out.println("파일업로드 실패");
-			rttr.addFlashAttribute("msgType", "실패메세지"); 
-			rttr.addFlashAttribute("msg", "파일의 크기가 너무 큽니다");
-			return "redirect:/member/updateForm";
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
+		// 내가 업로드한 파일 가져오기
+		File file = multi.getFile("memProfile");
 		
-
-		//이미지 유효성 검사(jpg, png 같은 이미지 파일만 저장하겠다)
-		File file = multi.getFile("memProfile"); //사용자가 업로드한 파일을 서버에서 다룰 수 있도록 File 객체로 꺼내주는 역할
-		
-		if(file != null) {
-			//여기로 오는 순간 이미 내가 폴더안에 파일 업로드한 상황 
-			
-			//업로드한 파일의 확장자를 가져오기 //.getName() → abc.jpg
-			//substring: 문자열(String)에서 원하는 부분만 잘라내는 메서드
-			//lastIndexOf("."): 점(.) 다음 글자부터 확장자를 잘라낼 때 기준이 되는 위치를 구하는 코드			
-			String ext = file.getName().substring(file.getName().lastIndexOf(".") + 1); //.기준 뒤로 잘라준다 
-			
-			//소문자인 경우 대문자로 통일
+		if(file != null) { // 업로드가 된 상태
+			// System.out.println(file.getName());
+			String ext = file.getName().substring(file.getName().lastIndexOf(".") + 1);
 			ext = ext.toUpperCase();
+			
 			if(!(ext.equals("PNG") || ext.equals("GIF") || ext.equals("JPG"))) {
-				//이미지 파일이 아니라면 파일을 삭제한다 
+				
 				if(file.exists()) {
-					//해당 파일이 존재하는지 유무
 					file.delete();
-					rttr.addFlashAttribute("msgType", "실패메세지"); 
-					rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다(PNG, JPG, GIF)");
+					rttr.addFlashAttribute("msgType", "실패메세지");
+					rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다.(PNG, JPG, GIF)");
 					return "redirect:/member/updateForm";
 				}
 			}
 		}
 		
 		
-		//업로드한 이미지의 이름 
-		//업로드된 파일 "memProfile"의 서버에 저장된 실제 파일 이름을 문자열로 반환해 줌.
-		String newProfile = multi.getFilesystemName("memProfile");
+		String fileName = multi.getFilesystemName("memProfile");
 		
-		//로그인 정보에 업로드한 이미지 넣기 
-		mvo.setMemProfile(newProfile);
+		System.out.println("fileName: " + fileName);  //se1.png
+		System.out.println("file: " + file);          //C:\cm_upload\profile_upload\se1.png
 		
+		if (fileName != null) {
+	    
+		    // 2. 확장자 추출
+		    String ext = fileName.substring(fileName.lastIndexOf(".")); // .jpg 등
+		    
+		    // 3. UUID 생성 후 새 파일명 만들기
+		    String uuid = UUID.randomUUID().toString();
+		    String newProfile = uuid + "_" + fileName; // 예: a1b2c3d4...jpg
+		    
+		    // 4. 파일명 변경 (Rename)
+		    File newFile = new File(savePath + newProfile);
+		    if (file.renameTo(newFile)) {
+		        // 변경 성공 시 DB에 저장할 객체에 세팅
+		        Member mvo = new Member();
+		        mvo.setMemID(memID);
+		        mvo.setMemProfile(newProfile); // UUID가 붙은 새 이름을 DB에 저장
+		        
+		        service.profileUpdate(mvo);
+		    
+		    }
+		}
 		
-		//해당회원 DB에 파일 이름 넣기 
-		service.profileUpdate(mvo);
+		// 사진 업데이트 후 수정된 회원정보를 다시 가져와서 세션에 담기
+		Member m = service.fromIDInfo(memID); // 이전의 getMember와 같다
+		session.setAttribute("mvo", m);
 		
-		//세션에 새로운 정보 넣어주기 
-		session.setAttribute("mvo", mvo);
-		rttr.addFlashAttribute("msgType", "성공메세지"); 
-		rttr.addFlashAttribute("msg", "이미지 변경이 성공했습니다");
-		
-		return "redirect:/board/list"; 
+		rttr.addFlashAttribute("msgType", "성공메세지");
+		rttr.addFlashAttribute("msg", "이미지 변경이 성공했습니다.");
+		return "redirect:/board/list";
 	}
-
+	
+	
 
 	//업데이트폼 이동 
 	@RequestMapping("/updateForm")
@@ -225,12 +240,45 @@ public class MemberController {
 	//업데이트기능
 	@RequestMapping("/update")
 	public String update(Member m, RedirectAttributes rttr, HttpSession session) {
+	    // 1. 세션 체크 (NPE 방지)
+	    Member mvo = (Member)session.getAttribute("mvo");
+	    if(mvo == null) {
+	        return "redirect:/member/loginForm";
+	    }
+
+	    // 2. 유효성 검사
+	    if(m.getMemEmail() == null || m.getMemEmail().trim().equals("")) {
+	        rttr.addFlashAttribute("msgType", "실패메세지");
+	        rttr.addFlashAttribute("msg", "이메일을 입력해주세요.");
+	        return "redirect:/member/updateForm";
+	    }
+
+	    // 3. 기존 데이터 보존
+	    m.setMemProfile(mvo.getMemProfile());
+	    // 만약 JSP에서 memID를 hidden으로 안 보냈다면 여기서 강제로 세팅해줘야 함
+	    if(m.getMemID() == null) m.setMemID(mvo.getMemID());
+
+	    int cnt = service.update(m);
+
+	    if(cnt == 1) {
+	        // 4. 세션 업데이트 (중요: m을 통째로 넣지 말고 mvo를 수정해서 넣기)
+	        mvo.setMemEmail(m.getMemEmail()); 
+	        session.setAttribute("mvo", mvo); 
+	        
+	        rttr.addFlashAttribute("msgType", "성공메세지");
+	        rttr.addFlashAttribute("msg", "이메일 수정에 성공했습니다");
+	        return "redirect:/board/list";
+	    } else {
+	        rttr.addFlashAttribute("msgType", "실패메세지");
+	        return "redirect:/member/updateForm";
+	    }
+	}
+	
+	//업데이트기능
+	@RequestMapping("/passwordUpdate")
+	public String passwordUpdate(Member m, RedirectAttributes rttr, HttpSession session) {
 		//유효성검사 
-		if(m.getMemPassword() == null || m.getMemPassword().equals("") ||
-		   m.getMemName() == null || m.getMemName().equals("") ||
-		   m.getMemNickName() == null || m.getMemNickName().equals("") ||
-		   m.getMemAge() == 0 ||
-		   m.getMemEmail() == null || m.getMemEmail().equals("") 
+		if(m.getMemPassword() == null || m.getMemPassword().equals("")
 		  ) {
 			rttr.addFlashAttribute("msgType", "실패메세지"); 
 			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요");
@@ -242,25 +290,50 @@ public class MemberController {
 			Member mvo = (Member)session.getAttribute("mvo"); 
 			m.setMemProfile(mvo.getMemProfile()); //로그인한 Member의 MemProfile 값울 담는다
 			
-			int cnt = service.update(m); 
+			int cnt = service.passwordUpdate(m); 
 			
 			if(cnt == 1) {
 				System.out.println("회원정보수정 성공");
 				rttr.addFlashAttribute("msgType", "성공메세지"); 
-				rttr.addFlashAttribute("msg", "회원정보수정에 성공했습니다");
+				rttr.addFlashAttribute("msg", "비밀번호 변경에 성공했습니다");
 				session.setAttribute("mvo", m); //회원정보 session도 업데이트해야한다
-				return "redirect:/board/list";		
+				return "redirect:/";		
 			}else {
 				System.out.println("회원정보수정 실패");
 				rttr.addFlashAttribute("msgType", "실패메세지"); 
-				rttr.addFlashAttribute("msg", "회원정보수정에 실패했습니다");
+				rttr.addFlashAttribute("msg", "비밀번호 변경에 실패했습니다");
 				return "redirect:/member/updateForm";
 			}
 		}
 	}
 
+	
+	
 
+	//프로필이미지삭제
+	@PostMapping("/imageDelete")  
+	public String imageDelete(String memID, RedirectAttributes rttr, HttpSession session) { 
 
+		int cnt = service.imageDelete(memID);
+		
+		if(cnt == 1) {			
+			rttr.addFlashAttribute("msgType", "성공메세지"); 
+			rttr.addFlashAttribute("msg", "프로필이미지가 삭제되었습니다");			
+		}else {
+			rttr.addFlashAttribute("msgType", "실패메세지"); 
+			rttr.addFlashAttribute("msg", "프로필이미지 삭제에 실패했습니다");								
+		}	
+		
+		// 세션에 저장된 회원 정보에서도 이미지 경로를 기본 이미지나 null로 변경해야 프로필삭제가 바로반영된다
+		Member mvo = (Member) session.getAttribute("mvo");
+		mvo.setMemProfile("");            // 이미지 경로 초기화
+	    session.setAttribute("mvo", mvo); // 세션 갱신
+		
+		return "redirect:/member/updateForm";
+	}
+					
+	
+	
 
 
 

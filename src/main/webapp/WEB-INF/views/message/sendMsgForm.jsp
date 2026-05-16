@@ -11,22 +11,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	  <div class="panel panel-default">
 		<div class="panel-heading">메세지 쓰기</div>
 		<div class="panel-body">
 		<form id="frm">
 		
-			<button data-btn="sendMsg" type="button" class="btn btn-primary btn-sm pull-left" style="margin: 0px 0px 15px 0px;">보내기</button>
+			<button data-btn="sendMsg" type="button" class="btn btn-custom btn-sm pull-left" style="margin: 0px 0px 15px 0px;">보내기</button>
 			<button type="reset" class="btn btn-default btn-sm pull-left" style="margin: 0px 0px  15px 5px;">취소</button>	
-			<button data-btn="msgList" type="button" class="btn btn-success btn-sm pull-left" style="margin: 0px 0px 15px 5px;">
+			<button data-btn="msgList" type="button" class="btn btn-default btn-sm pull-left" style="margin: 0px 0px 15px 5px;">
 			<span class="glyphicon glyphicon-folder-open"></span>&nbsp; 받은 메세지함 이동
 			</button>
 			
@@ -36,11 +37,14 @@
 			<input type="hidden" id="perPageNum" name="perPageNum" value="${cri.perPageNum}">
 			<input type="hidden" id="type" name="type" value="${cri.type}">
 			<input type="hidden" id="keyword" name="keyword" value="${cri.keyword}">
-		
+			
+			<input type="hidden" id="fromName" name="fromName" value="${mvo.memName}">
+			<input type="hidden" id="fromMajor" name="fromMajor" value="${mvo.memMajor}">
+			
 				<tr>
 					<td style="text-align: center; vertical-align: middle;">받는사람</td>
 					<td><input type="text" name="toID" id="toID" class="form-control" maxlength="20" value="${toID}"></td>
-					<td style="width: 110px;"><button type="button" onclick="registerCheck()" class="btn btn-primary">중복확인</button></td>
+					<td style="width: 110px;"><button type="button" onclick="registerCheck()" class="btn btn-custom">중복확인</button></td>
 				</tr>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;">제목</td>
@@ -48,7 +52,7 @@
 				</tr>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;">파일첨부</td>
-					<td colspan ="2"><input id="file" name="msgImgpath" type="file"  class="form-control"></td>
+					<td colspan ="2"><input id="file" name="attached_data" type="file"  class="form-control"></td>
 				</tr>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;">내용</td>
@@ -63,7 +67,7 @@
 		
 			
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %> 
 	  </div>
 	</div>
 	
@@ -129,11 +133,11 @@
 				success:function(data){ 	
 					if (data == 1) {
 		                $("#checkMessage").text("해당 아이디는 존재하지 않습니다.");
-		                $("#checkType").attr("class", "modal-content panel-warning");
+		                $("#checkType").attr("class", "modal-content panel-danger");
 		            }
 		            else {
 		                $("#checkMessage").text(memID + " 님에게 메시지를 보낼 수 있습니다.");
-		                $("#checkType").attr("class", "modal-content panel-success");
+		                $("#checkType").attr("class", "modal-content panel-primary");
 		            }
 					$("#myModal").modal("show"); //.modal() 함수는 Bootstrap의 JavaScript 플러그인에서 제공하는 함수다
 				},

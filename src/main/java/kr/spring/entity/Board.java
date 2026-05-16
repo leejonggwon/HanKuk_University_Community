@@ -15,13 +15,20 @@ public class Board {
 	
 	private int idx;
 	private String memID;
+	private String category;
 	private String title;
 	private String content;
 	private String writer;
+	private String memMajor;
 	private Date indate; //java.util 
 	private int count;
 	private int likeCount;
+	
 	private String imgpath;
+	private String attached_data; //첨부파일
+	
+	private String originImgpath;
+	private String originAttached_data;
 	
 	private int boardGroup;     //댓글그룹
 	private int boardSequence;  //댓글순서

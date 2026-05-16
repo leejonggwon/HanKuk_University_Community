@@ -18,7 +18,8 @@ public class Comment {
 	private String cmtContent; //댓글내용	
 	private String memID;      //아이디 Member
 	private String memName;    //이름 Member
-	private String memNickName;    
+	private String memMajor;    //이름 Member
+	
 	private String memProfile; //프로필이미지 Member
 	private Date cmtIndate;    //댓글작성된 시간
 	private int cmtAvailable;  //댓글삭제여부(0:삭제상태)

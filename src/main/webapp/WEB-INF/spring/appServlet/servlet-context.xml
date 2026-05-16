@@ -9,6 +9,7 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
@@ -16,6 +17,10 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/css/**" location="/css/" />
+	
+	<resources mapping="/profile_upload/**" location="file:///C:/cm_upload/profile_upload/" />
+	<resources mapping="/board_upload/**" location="file:///C:/cm_upload/board_upload/" />
+	<resources mapping="/message_upload/**" location="file:///C:/cm_upload/message_upload/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

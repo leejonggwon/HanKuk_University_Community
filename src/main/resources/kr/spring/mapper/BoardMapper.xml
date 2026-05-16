@@ -25,8 +25,8 @@
 	
 	
 	<insert id="insert" parameterType="kr.spring.entity.Board">
-		INSERT INTO CM_BOARD(IDX, MEMID, TITLE, CONTENT, WRITER, IMGPATH, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
-		SELECT IFNULL(MAX(IDX) + 1, 1) , #{memID}, #{title}, #{content}, #{writer}, #{imgpath}, IFNULL(MAX(IDX) + 1, 1), 0, 0, 1   
+		INSERT INTO CM_BOARD(IDX, MEMID, CATEGORY, TITLE, CONTENT, WRITER, IMGPATH, ATTACHED_DATA, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
+		SELECT IFNULL(MAX(IDX) + 1, 1) , #{memID}, #{category}, #{title}, #{content}, #{writer}, #{imgpath}, #{attached_data}, IFNULL(MAX(IDX) + 1, 1), 0, 0, 1   
 		FROM CM_BOARD                   
 	</insert>
 	<!-- 날짜와(NOW) 조회수(0)는 빼고 넣어준다  -->
@@ -50,13 +50,11 @@
 				   IFNULL(MAX(BOARDGROUP) + 1, 1) as boardGroup
 				   FROM CM_BOARD 	
 		</selectKey>
-		INSERT INTO CM_BOARD(IDX, MEMID, TITLE, CONTENT, WRITER, IMGPATH, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
-		VALUES(#{idx}, #{memID}, #{title}, #{content}, #{writer}, #{imgpath}, #{boardGroup}, 0, 0, 1)
+		INSERT INTO CM_BOARD(IDX, MEMID, CATEGORY, TITLE, CONTENT, WRITER, MEMMAJOR, IMGPATH, ATTACHED_DATA, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
+		VALUES(#{idx}, #{memID}, #{category}, #{title}, #{content}, #{writer}, #{memMajor}, #{imgpath}, #{attached_data}, #{boardGroup}, 0, 0, 1)
 	</insert>
 	
-	
-	
-	
+
 	<!-- 게시글상세보기  -->
 	<select id="read" parameterType="int" resultType="kr.spring.entity.Board">
 		SELECT * FROM CM_BOARD WHERE IDX = #{idx}
@@ -65,7 +63,7 @@
 	<!-- 게시글수정 -->
 	<update id="update" parameterType="kr.spring.entity.Board">
 		UPDATE CM_BOARD 
-		SET TITLE = #{title}, CONTENT = #{content}, IMGPATH = #{imgpath} 
+		SET CATEGORY = #{category}, TITLE = #{title}, CONTENT = #{content}, IMGPATH = #{imgpath} ,ATTACHED_DATA =#{attached_data}
 		WHERE IDX = #{idx}
 	</update>
 	
@@ -93,8 +91,8 @@
 			SELECT IFNULL(MAX(IDX) + 1, 1) as idx
 				   FROM CM_BOARD 	
 		</selectKey>
-		INSERT INTO CM_BOARD(IDX, MEMID, TITLE, CONTENT, WRITER, IMGPATH, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
-		VALUES(#{idx}, #{memID}, #{title}, #{content}, #{writer}, #{imgpath}, 
+		INSERT INTO CM_BOARD(IDX, MEMID, CATEGORY, TITLE, CONTENT, WRITER, MEMMAJOR, IMGPATH, ATTACHED_DATA, BOARDGROUP, BOARDSEQUENCE, BOARDLEVEL, BOARDAVAILABLE)
+		VALUES(#{idx}, #{memID}, #{category}, #{title}, #{content}, #{writer}, #{memMajor}, #{imgpath}, #{attached_data},
 		#{boardGroup}, #{boardSequence}, #{boardLevel}, 1)
 	</insert>
 	

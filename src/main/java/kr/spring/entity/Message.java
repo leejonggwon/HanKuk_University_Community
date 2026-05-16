@@ -16,11 +16,16 @@ public class Message {
 	
 	private int msgIdx;
 	private String toID;
+
 	private String fromID;
+	private String fromName;
+	private String fromMajor;
+	
 	private String msgTitle;
 	private String msgContent;
-	private Date msgDate; //java.util 
-	private String msgImgpath;
+	private Date msgDate; //java.util
+	
+	private String attached_data;
 	private int readStatus;
 	private int arriveStatus;
 	private int delToID;

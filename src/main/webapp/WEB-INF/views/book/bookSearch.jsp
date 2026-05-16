@@ -11,13 +11,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	
 	  <div class="panel panel-default">
@@ -35,21 +36,20 @@
 				<div class="form-group">
 					<input type="text" value="${pageMaker.cri.keyword}" class="form-control" name="keyword">
 				</div>
-				<button type="submit" class="btn btn-sm btn-light" style="margin: 0px 5px 0px 0px;">도서검색</button>	
-				<c:if test="${mvo.memID == 'admin'}">		
-								<button id="regBtn" class="btn btn-sm btn-success">도서등록</button>	
-				</c:if>									
+				<button type="submit" class="btn btn-sm btn-custom" style="margin: 0px 5px 0px 0px;">도서검색</button>	
+				
+				<br>
+				<br>
+				<p style="text-align: center">※검색어 없이 도서 검색 버튼을 누르면 전체 도서가 출력됩니다</p>												
 			</form>
 		</div>
 		</div>
-		<div class="panel-footer">MVC Communication - All rights reserved</div>
+		<%@ include file="/WEB-INF/views/common/bottom.jsp" %> 
 	  </div>
 	</div>
 	
 	<script type="text/javascript">
-		$("#regBtn").click(function() {
-			location.href="${cpath}/book/bookRegister";
-		});	
+
 	</script>
 	
 </body>

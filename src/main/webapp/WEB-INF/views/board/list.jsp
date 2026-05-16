@@ -11,14 +11,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
+
+<style>
+/*모달창 카드처럼*/
+/*
+#writerType {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+*/
+
+</style>
 <body>
-	<div class="container">
-	<!-- 정적 include 이라서 WEB-INF 안에 있는 JSP를 직접 읽어올 수 있다 -->
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %> 
 
 		
@@ -32,8 +44,10 @@
 					<thead> <!-- thead: 테이블헤더를 구분해주는 영역태그 -->
 						<tr>
 							<th style="width: 6%; text-align: center;">번호</th>
-				            <th style="width: 55%; text-align: center;">제목</th>
-				            <th style="width: 15%; text-align: center;">작성자</th>
+							<th style="width: 9%; text-align: center;">분류</th>
+				            <th style="width: 39%; text-align: center;">제목</th>
+				            <th style="width: 11%; text-align: center;">작성자</th>
+				            <th style="width: 11%; text-align: center;">전공</th>
 				            <th style="width: 12%; text-align: center;">작성일</th>
 				            <th style="width: 6%; text-align: center;">조회수</th>
 				            <th style="width: 6%; text-align: center;">공감수</th>
@@ -43,6 +57,7 @@
 						<c:forEach items="${list}" var="vo" varStatus="i"> <!-- model.addAttribute("list", list) -->
 				            <tr>
 				                <td style="text-align: center">${pageMaker.totalCount - ((pageMaker.cri.page - 1) * pageMaker.cri.perPageNum + i.index)}</td>
+				                <td style="text-align: center">${vo.category}</td>			                
 				                <td>
 				                	<!-- 삭제하는 경우  -->
 				                	<c:if test="${vo.boardAvailable == 0}"> 
@@ -70,12 +85,13 @@
 						            </c:if>   
 				                </td> 			                
 				          
-				                <td style="text-align:center" class="writer" data-writer="${vo.writer}">
-								   <a href="#"> ${vo.writer} </a>
+				                <td style="text-align:center" class="writer" data-writer="${vo.memID}">
+								   <a href="#"> ${vo.writer}</a>
 								</td>
+								<td style="text-align: center">${vo.memMajor}</td>
 								
 				                <td style="text-align: center">
-				                	<fmt:formatDate value="${vo.indate}" pattern="yyyy.MM.dd hh:mm"/>			             
+				                	<fmt:formatDate value="${vo.indate}" pattern="yyyy-MM-dd HH:mm"/>			             
 				                </td>
 				                <td style="text-align: center">${vo.count}</td>
 				                <td style="text-align: center">${vo.likeCount}</td>
@@ -84,8 +100,8 @@
 					</tbody>
 					<c:if test="${not empty mvo}"><!-- 로그인시 글쓰기 버튼 노출 -->
 					<tr>
-						<td colspan="6">
-							<button id="regBtn" class="btn btn-sm btn-success pull-right">글쓰기</button>
+						<td colspan="7">
+							<button id="regBtn" class="btn btn-sm btn-custom pull-left">글쓰기</button>
 						</td>
 					</tr>		
 					</c:if>	
@@ -105,7 +121,7 @@
 						<div class="form-group">
 							<input type="text" value="${pageMaker.cri.keyword}" class="form-control" name="keyword">
 						</div>
-						<button type="submit" class="btn btn-light btn-sm">검색</button>									
+						<button type="submit" class="btn btn-custom btn-sm">검색</button>									
 					</form>
 				</div>
 				
@@ -127,7 +143,7 @@
 				  			<a href="${pageMaker.cri.page - 1}">◁</a>
 				  		</li>
 				  	</c:if>
-				  
+				    
 				    <!-- 페이지번호 처리하기 -->
 				    <c:forEach var="pageNum" begin="${pageMaker.startPage}" end="${pageMaker.endPage}" >
 				    	<c:if test="${pageMaker.cri.page == pageNum}">
@@ -140,7 +156,7 @@
 				    </c:forEach>					   
 				    
 				    
-				   <!-- 다음버튼(페이지용) -->
+				    <!-- 다음버튼(페이지용) -->
 				  	<c:if test="${pageMaker.nextPage}">
 				  		<li class="paginate_button previous">
 				  			<a href="${pageMaker.cri.page + 1}">▷</a>
@@ -153,7 +169,7 @@
 				  			<a href="${pageMaker.endPage + 1}">▶</a>
 				  		</li>
 				  	</c:if>				  				  		    
-
+				  </ul>
 				  
 				  <!-- 페이지 버튼을 클릭했을 때 페이지 이동을 처리하기 위한 숨겨진(form) 전송용 폼 -->
 				  <form action="${cpath}/board/list" id="pageFrm">
@@ -167,62 +183,32 @@
 				 
 				</div>	 							
 			</div>
-			<div class="panel-footer">MVC Communication - All rights reserved</div>
+			<%@ include file="/WEB-INF/views/common/bottom.jsp" %> 
 		</div>
 	</div>
 	
 
    <!--회원가입 성공시 띄워줄 모달창 -->
-   <div class="modal fade" id="myMessage" role="dialog">
-     <div class="modal-dialog">
-     
-
-       <!-- 모달내용-->
-       <div id="messageType" class="modal-content">
-         <div class="modal-header panel-heading"> <!-- panel-heading을 넣어야 헤더 스타일이 적용된다 -->
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-           <h4 id="modal-title" class="modal-title">${msgType}</h4>
-         </div>
-         <div id="modal-body" class="modal-body">  
-         	<p>${msg}</p>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         </div>
-       </div>
-     </div>
-   </div>
+   <%@ include file="/WEB-INF/views/common/message_modal.jsp" %>
    
    
-	<!-- 작성자 정보를 띄워줄 모달 -->
-	<div class="modal fade" id="writerModal" role="dialog">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header panel-heading">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">작성자 정보</h4>
-	      </div>
-	      
-	      <div class="modal-body text-center">
-	        <img id="writerImg" src="" 
-	             style="width:120px; height:120px; border-radius:50%; margin-bottom:10px;">     
-	        <p id="writerNickName" style="font-size:16px; font-weight:bold;"></p>  
-	        <p id="writerID" style="font-size:16px;"></p>           
-	        <p id="writerName" style="font-size:16px;"></p>
-	        <button id="regBtnProfile" class="btn btn-success btn-sm">메세지 보내기</button>
-	      </div>
-	      
-	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+	<!-- 작성자 정보를 띄어주는 모달 -->
+	<%@ include file="/WEB-INF/views/common/writer_modal.jsp" %>
    
 
 	<script type="text/javascript">
 		//페이지가 다 로드 되면 함수를 실행하겠다 
 		$(document).ready(function() {
+		
+			if(${not empty msgType}){ //EL식
+				if(${msgType eq "성공메세지"}){ //EL식
+					$("#messageType").attr("class", "modal-content panel-primary");
+				}else{
+					$("#messageType").attr("class", "modal-content panel-success");
+				}
+			$("#myMessage").modal("show"); //모달창 실행
+			}
+			
 			
 			//**페이지 번호 클릭 시 이동하기 
 			//form태그의 id=pageFrm 인 요소를 선택
@@ -261,22 +247,30 @@
 				pageFrm.submit();
 			});
 			
+			
 			//게시글 작성자 클릭시 프로필 보이기 기능 
 			$(".writer").on("click", function() {
-			    var writer = $(this).data("writer");
+				
+			    var memID = $(this).data("writer"); 		   
 
 			    $.ajax({
 			        url: "${cpath}/member/writerInfo",
 			        type: "get",
-			        data: { "writer" : writer},
+			        data: { "memID" : memID},
 			        dataType: "json",
-			        success: function(writerInfo) {	        			        	
-			        	$("#writerID").text("ID: " + writerInfo.memID);
-			        	$("#writerID").data("ID", writerInfo.memID);
-			        	$("#writerNickName").text("Nick: " + writerInfo.memNickName);
-			            $("#writerName").text("Name: "+ writerInfo.memName);
+			        success: function(writerInfo) {	   
+			        	$("#writerName").text("[이름] "+ writerInfo.memName);
+			        	$("#writerMajor").text("[전공] "+ writerInfo.memMajor);
+			        	
+			        	$("#writerID").text("[학번] " + writerInfo.memID);	
+			        	$("#writerID").data("writer_ID" , writerInfo.memID); 
+			        	//id가 memID인 요소 내부에 "writer_ID"라는 사용자 정의 데이터 키로 실제 아이디 값을 숨겨서 저장한다
+			        	//화면에는 보이지 않지만 JS에서 꺼내 쓸 수 있도록 데이터를 저장하는 코드
+			        	
+			            $("#writerUserCode").text("[회원코드] "+ writerInfo.memUserCode);
+
 			            $("#writerImg").attr("src",  writerInfo.memProfile             // writerInfo.memProfile에 
-			            		? "${cpath}/resources/upload/" + writerInfo.memProfile // 값이 있으면 이 경로
+			            		? "${cpath}/profile_upload/" + writerInfo.memProfile // 값이 있으면 이 경로
 			            		: "${cpath}/resources/images/default.png");			   // 값이 없으면 기본 이미지
 			            $("#writerModal").modal("show");
 			        },
@@ -288,7 +282,8 @@
 			
 			//프로필에서 메시지보내기 폼으로 이동
 			$("#regBtnProfile").on("click", function () {
-			    window.location.href = "${cpath}/message/sendMsgForm?toID=" + $("#writerID").data("ID");
+			    window.location.href = "${cpath}/message/sendMsgForm?toID=" + $("#writerID").data("writer_ID");
+			    //writer_ID는 JS .writer에서 온거다
 			});
 			
 						
@@ -304,13 +299,7 @@
 				//GET방식: 글쓰기 화면(register.jsp)로 이동
 			});
 			
-			//회원가입성공시 모달
-			if(${not empty msgType}){ //EL식
-				if(${msgType eq "성공메세지"}){ //EL식
-					$("#messageType").attr("class", "modal-content panel-success");
-				}
-			$("#myMessage").modal("show"); //모달창 실행
-			}
+
 			
 			
 		}); //ready
@@ -322,8 +311,10 @@
 				return; //함수끝
 			}
 			if(parseInt(result) > 0){
+				$("#messageType").attr("class", "modal-content panel-primary");
 				$("#modal-title").text("Modal Header"); 
-				$("#modal-body").text("게시글 " + result + "번이 등록되었습니다"); //class="modal-body"
+				//$("#modal-body").text("게시글 " + result + "번이 등록되었습니다"); //class="modal-body"
+				$("#modal-body").text("게시글이 등록되었습니다"); //class="modal-body"
 				$("#myMessage").modal("show"); //id="myMessage" 모달 실행
 			}
 		}
@@ -334,8 +325,10 @@
 				return; //함수끝
 			}
 			if(parseInt(modify_result) > 0){
+				$("#messageType").attr("class", "modal-content panel-primary");
 				$("#modal-title").text("Modal Header"); 
-				$("#modal-body").text("게시글 " + modify_result + "번이 수정되었습니다"); //class="modal-body"
+				//$("#modal-body").text("게시글 " + modify_result + "번이 수정되었습니다"); //class="modal-body"
+				$("#modal-body").text("게시글이 수정되었습니다"); //class="modal-body"
 				$("#myMessage").modal("show"); //id="myMessage" 모달 실행
 			}
 		}

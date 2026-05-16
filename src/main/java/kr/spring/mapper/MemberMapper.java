@@ -28,4 +28,10 @@ public interface MemberMapper {
 	
 	//메시지 작성자 프로필 조회
 	public Member fromIDInfo(String memID);
+
+	//프로필이미지삭제
+	public int imageDelete(String memID);
+
+	//비밀번호변경
+	public int passwordUpdate(Member m);
 }

@@ -11,24 +11,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Communication</title>
+<title>HanKuk University Community</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${cpath}/resources/css/btnStyle.css">
 </head>
 <body>
-	<div class="container">
+	
 	<%@ include file="/WEB-INF/views/common/header.jsp" %> 
 
 	  <div class="panel panel-default">
 		<div class="panel-heading">BookRegister</div>
 		<div class="panel-body">
 			<form id="frm">
-			
+	     
 			<table class="table table-hover table-bordered">
-			<input type="hidden" id="page" name="page" value="${cri.page}">
-			<input type="hidden" id="perPageNum" name="perPageNum" value="${cri.perPageNum}">
-			
 				<tr>
 					<td>제목</td>
 					<td><input id="bkTitle" type="text" name="bkTitle" class="form-control"></td>
@@ -60,17 +58,24 @@
 				
 				<tr>
 					<td colspan="2" style="text-align:center">
-						<button data-btn="bookRegister" type="button" class="btn btn-primary btn-sm">등록</button>
+						<button data-btn="bookRegister" type="button" class="btn btn-custom btn-sm">등록</button>
 						<button type="reset" class="btn btn-default btn-sm">취소</button>	
-						<button data-btn="bookList" type="button" class="btn btn-sm btn-warning">목록</button>
+						<button data-btn="bookList" type="button" class="btn btn-sm btn-default">목록</button>
 				   </td>
 			   </tr>	
 			 </table>
+			 
+			     <!--목록에서 안넘아가는 해결방법1) 서버에서 넘겨준 객체(pageMaker)를 믿지 말고, 
+			     현재 주소창에 있는 값(param)을 바로 사용해보자  -->
+			 	 <input type="hidden" id="page" name="page" value="${param.page}">
+				 <input type="hidden" id="perPageNum" name="perPageNum" value="${param.perPageNum}">
+				 <input type="hidden" id="type" name="type" value="${param.type}">
+			     <input type="hidden" id="keyword" name="keyword" value="${param.keyword}">
+			     
 			 </form>
-			
-			
+
 			</div> 
-			<div class="panel-footer">MVC Communication - All rights reserved</div>
+			<%@ include file="/WEB-INF/views/common/bottom.jsp" %> 
 		  </div>
 		</div>
 	
@@ -79,19 +84,26 @@
 			$("button").on("click", function(e) {
 				var formData = $("#frm");
 				var btn = $(this).data("btn");
-				
-				if(btn == "bookList"){
-					formData.attr("action", "${cpath}/book/bookList");
-					formData.attr("method", "get");
+
+				if(btn == "bookList"){	
 					
-					formData.find("#bkTitle").remove();
-					formData.find("#bkAuthor").remove();
-					formData.find("#bkCompany").remove();
-					formData.find("#bkIsbn").remove();	
-					formData.find("#bkCategory").remove();
-					formData.find("#bkCallNumber").remove();
-					formData.find("#bkCount").remove();	
-								
+					//목록에서 안넘아가는 해결방법2) 
+					// var page = "${param.page}";
+				    // var perPageNum = "${param.perPageNum}";
+				    // var type = "${param.type}";
+				    // var keyword = "${param.keyword}";
+				    
+				    //  $("#page").val(page);
+				    //  $("#perPageNum").val(perPageNum);
+				    //  $("#type").val(type);
+				    //  $("#keyword").val(keyword);
+				    
+				   //목록에서 안넘아가는 해결방법3)  
+				   //location.href = "${cpath}/book/bookList?page=" + page + "&perPageNum=" + perPageNum + "&type=" + type + "&keyword=" + keyword;
+
+				    formData.attr("action", "${cpath}/book/bookList");
+					formData.attr("method", "get");
+					formData.submit();
 					
 				}else if(btn == "bookRegister"){			
 					formData.attr("action", "${cpath}/book/bookRegister");
@@ -99,8 +111,8 @@
 					
 					formData.find("#page").remove();
 					formData.find("#perPageNum").remove();
+					formData.submit();
 					}
-				formData.submit();
 			});
 		});
 	</script>

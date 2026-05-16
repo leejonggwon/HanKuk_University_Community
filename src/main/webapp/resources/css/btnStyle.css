@@ -1,0 +1,13 @@
+
+.btn-custom {
+    background-color: #09324e; 
+    color: white;            
+    border: none;             
+}
+
+/*버튼호버*/
+.btn-custom:hover {
+    background-color: #e0bdef;
+    color: white;
+    border: none; 
+}
