@@ -537,9 +537,6 @@ adv <br>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ea39aba7-77a1-4641-9e74-d64c6aaad9ae" width=90% />
 </p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/a22fab5c-6aa3-44e4-9c39-590a7432c60e" width="400" />
   <br>
   [실시간 그룹 오픈채팅 기능]
 </p>
