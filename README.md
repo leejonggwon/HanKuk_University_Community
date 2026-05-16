@@ -515,9 +515,36 @@ adv <br>
  <br>
 
 
+## 9. 실시간 그룹 오픈채팅 시스템 (WebSocket) <br>
+### 9-1. 주요 특징 (Key Features) <br>
+- **전이중 통신(Full-Duplex)** - 표준 `Native WebSocket API` 활용하여 서버와 클라이언트 간의 실시간 양방향 메시지 전송을 구현 <br>
+- **그룹별 세션 관리** - 같은 그룹에 속한 사용자들끼리만 메시지를 주고받을 수 있도록 세션 필터링 로직을 설계 <br>
+- **실시간 접속자 리스트** - `ServletContext`를 활용해 서버 전체의 접속자 현황을 관리하고, 사용자의 입장/퇴장 시 실시간으로 접속자 목록이 갱신되도록 구현<br>
+- **Handshake 인터셉터** - `HttpSessionHandshakeInterceptor`를 통해 HTTP 세션 정보(로그인 아이디, 그룹명 등)를 웹소켓 세션으로 안전하게 전이시켜 활용<br>
+<br>
+
+### 9-2. [Server] 세션 핸들링 및 메시지 브로드캐스팅 <br>
+- **접속 관리** - 사용자가 연결되면 `ArrayList<WebSocketSession>`에 저장하고, 입장 메시지를 동일 그룹 사용자들에게 전달한다 <br>
+- **메시지 분기 처리** - 메시지 페이로드의 특정 접두사(`#$nickName_`)를 분석하여 입장 알림인지, 일반 채팅 메시지인지 판별하여 처리한다 <br>
+- **비정상 종료 대응** - 브라우저 닫기나 네트워크 단절 시 `afterConnectionClosed`를 통해 세션을 즉시 제거하고 퇴장 알림을 보냄으로써 세션 누수를 방지한다 <br>
+<br>
+
+### 9-3. [Client] 동적 UI 및 웹소켓 이벤트 처리 <br>
+- **이벤트 리스너** - onopen, onmessage, onclose 이벤트를 각각 정의하여 서버와의 연결 상태에 따른 UI 변화를 구현 <br>
+- **조건부 렌더링** -서버로부터 받은 메시지가 '나'인 경우와 '타인'인 경우를 구분하여 말풍선 위치와 스타일을 다르게 렌더링 <br>
 
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ea39aba7-77a1-4641-9e74-d64c6aaad9ae" width=90% />
+</p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a22fab5c-6aa3-44e4-9c39-590a7432c60e" width="400" />
+  <br>
+  [실시간 그룹 오픈채팅 기능]
+</p>
+
+<br>
 
 
 
