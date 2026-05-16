@@ -5,7 +5,9 @@
 
 ### 서비스명
 - HanKuk University Community (한국대학교 커뮤니티) <br>
-- Spring MVC와 WebSocket을 활용한 3-Tier Architecture 기반 대학생 중심 커뮤니티 플랫폼
+- Spring MVC와 WebSocket을 활용한 3-Tier Architecture 기반 대학생 중심 커뮤니티 플랫폼<br>
+
+<br>
 
 ### 서비스설명
 - 본 프로젝트는 스프링(Spring) 프레임워크와 MVC 3Tier 아키텍처를 기반으로 한 커뮤니케이션 프로젝트입니다. <br>
@@ -14,6 +16,14 @@
 - WebSocket과 비동기 통신(AJAX)을 활용한 실시간 갱신을 구현했습니다. <br>
 - Bootstrap 3과 직관적인 JSP 기반 UI를 통해 사용자 친화적인 화면을 구성했습니다. <br>
 <br>
+
+### 프로젝트기간
+- 2025.10 ~ 2025.12 <br>
+- renewal 2026.5 <br>
+<br>
+
+### 시연영상
+adv <br>
 
 # 2. 기술스택
 - **Language** - Java 1.8 <br>
