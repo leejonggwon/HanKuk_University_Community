@@ -500,7 +500,6 @@ adv <br>
  ### 기술적 포인트
  - **Data Attribute 활용** - HTML data-* 속성에 작성자 ID를 숨겨 저장하고, 이를 서버 통신용 키(Key)값으로 활용합니다. <br>
  - 모달 내부 데이터 저장소(`data("writer_ID")`)에 실제 ID를 보관하여, 화면 표시 내용과 별개로 '메시지 보내기' 등 내부 로직에서 정확한 참조가 가능하도록 설계했습니다 <br>
-<br>
 
 <p align="center">
     <img src="https://github.com/user-attachments/assets/5bd63012-cbe3-4a24-a07f-59fc6c1e1681" width="50%" />
@@ -508,6 +507,13 @@ adv <br>
      [프로필 상세정보 시스템 - Data Attribute 활용]
   </p>
  <br>
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/5da944e2-9f4e-4209-8e91-c1af35b3f9ae" width="90%" />
+    <br>
+     [프로필 상세정보 시스템]
+  </p>
+ <br>
+
 
 
 
