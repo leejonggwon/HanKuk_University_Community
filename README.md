@@ -469,7 +469,7 @@
  - 성공 시 버튼의 색상을 `btn-default`로 초기화 합니다 <br>
 
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/c9bcb55e-f0b1-4748-857c-712a0af70f3e"" width="70%" />
+    <img src="https://github.com/user-attachments/assets/c9bcb55e-f0b1-4748-857c-712a0af70f3e"" width="90%" />
     <br>
      [좋아요 기능]
   </p>
