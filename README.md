@@ -23,7 +23,7 @@
 <br>
 
 ### 1-4. 시연영상
-[adv](https://youtu.be/HDL472NQWXA) <br>
+https://youtu.be/HDL472NQWXA <br>
 
 # 2. 기술스택
 - **Language** - Java 1.8 <br>
