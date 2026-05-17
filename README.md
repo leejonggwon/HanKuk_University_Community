@@ -44,7 +44,7 @@ adv <br>
 </p>
 
 
-# 4. System Architecture 
+# 4. 3Tier System Architecture
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="50%" />
