@@ -44,7 +44,6 @@ adv <br>
   <br>
    [Spring MVC]
 </p>
-<br>
 
 ###  3Tier System Architecture
 
@@ -53,7 +52,6 @@ adv <br>
   <br>
    [3Tier System Architecture]
 </p>
-<br>
 
 ### 1) Controller / RestController
 -  MainController <br>
