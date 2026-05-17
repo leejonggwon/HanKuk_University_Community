@@ -314,7 +314,7 @@ public class BoardController {
 	public String register(Board vo, RedirectAttributes rttr, HttpServletRequest request) { 
 
 	    MultipartRequest multi = null;
-	    int fileMaxSize = 100 * 1024 * 1024;   
+	    int fileMaxSize = 100 * 1024 * 1024;   //
 	    
 		String savePath = "C:/cm_upload/board_upload/"; //
 		
