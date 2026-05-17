@@ -36,21 +36,24 @@ adv <br>
 <br>
 
 
-# 3. Spring MVC Architecture
+# 3. System Architecture
+
+### Spring MVC Architecture
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b1b16204-b73e-494a-8991-bd9eb5dfc7be" width="50%" />
   <br>
    [Spring MVC]
 </p>
+<br>
 
-
-# 4. 3Tier System Architecture
+###  3Tier System Architecture
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="50%" />
   <br>
    [3Tier System Architecture]
 </p>
+<br>
 
 ### 1) Controller / RestController
 -  MainController <br>
@@ -77,7 +80,7 @@ adv <br>
 <br>
 
 
-# 5. DataBase E-R Diagram
+# 4. DataBase E-R Diagram
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8702110a-16cd-4341-8128-b79fdf0deec5" width=100% />
   <br>
@@ -86,7 +89,7 @@ adv <br>
 <br>
 
 
-# 6. 기능구조도
+# 5. 기능구조도
 <p align="center">
   <img src="https://github.com/user-attachments/assets/13926689-cb28-4cf4-bef1-a0589860bb74" width=55% />
   <br>
@@ -95,7 +98,7 @@ adv <br>
 <br>
 
 
-# 7. 핵심기능설명
+# 6. 핵심기능설명
 
 <br>
 
