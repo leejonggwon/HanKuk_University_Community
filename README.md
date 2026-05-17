@@ -36,7 +36,7 @@ adv <br>
 <br>
 
 
-# 3. Spring MVC
+# 3. Spring MVC Architecture
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b1b16204-b73e-494a-8991-bd9eb5dfc7be" width="50%" />
   <br>
