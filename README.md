@@ -39,15 +39,7 @@ https://www.youtube.com/watch?v=HDL472NQWXA
 <br>
 
 
-# 3. Spring MVC
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/b1b16204-b73e-494a-8991-bd9eb5dfc7be" width="50%" />
-  <br>
-   [Spring MVC]
-</p>
-
-
-# 4. System Architecture 
+# 3. System Architecture 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/60435bdd-9784-43a1-a2c1-194e88dab72d" width="50%" />
@@ -80,7 +72,7 @@ https://www.youtube.com/watch?v=HDL472NQWXA
 <br>
 
 
-# 5. DataBase E-R Diagram
+# 4. DataBase E-R Diagram
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8702110a-16cd-4341-8128-b79fdf0deec5" width=100% />
   <br>
@@ -89,7 +81,7 @@ https://www.youtube.com/watch?v=HDL472NQWXA
 <br>
 
 
-# 6. 기능구조도
+# 5. 기능구조도
 <p align="center">
   <img src="https://github.com/user-attachments/assets/13926689-cb28-4cf4-bef1-a0589860bb74" width=55% />
   <br>
@@ -98,7 +90,7 @@ https://www.youtube.com/watch?v=HDL472NQWXA
 <br>
 
 
-# 7. 핵심기능설명
+# 6. 핵심기능설명
 
 <br>
 
