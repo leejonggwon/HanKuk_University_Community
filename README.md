@@ -323,7 +323,7 @@ https://www.youtube.com/watch?v=HDL472NQWXA
   <br>
 
 
-## 5. 페이징 및 동적 검색 시스 (Paging & Dynamic Search)
+## 5. 페이징 및 동적 검색 시스템 (Paging & Dynamic Search)
 대량의 데이터를 효율적으로 조회하고, 사용자가 원하는 정보를 빠르게 찾을 수 있도록 객체 지향적 페이징 처리와 MyBatis 동적 SQL 기반의 검색 기능을 구현했습니다 <br>
 
 ### 5-1. 주요 설계
